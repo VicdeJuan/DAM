@@ -1,0 +1,7 @@
+Libros prestados por el usuario antes de la devolución:
+ISBN: 978-1-86197-876-9, Título: 1984, Autor: George Orwell, Año de Publicación: 1949, Disponible: false
+ISBN: 978-0-14-103613-7, Título: To Kill a Mockingbird, Autor: Harper Lee, Año de Publicación: 1960, Disponible: false
+
+Libros prestados por el usuario después de la devolución:
+ISBN: 978-1-86197-876-9, Título: 1984, Autor: George Orwell, Año de Publicación: 1949, Disponible: true
+ISBN: 978-0-14-103613-7, Título: To Kill a Mockingbird, Autor: Harper Lee, Año de Publicación: 1960, Disponible: false

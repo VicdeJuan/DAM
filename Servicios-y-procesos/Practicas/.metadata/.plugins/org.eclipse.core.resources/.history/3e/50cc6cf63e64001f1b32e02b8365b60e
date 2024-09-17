@@ -1,0 +1,35 @@
+package ejercicio1;
+
+import java.util.Scanner;
+
+
+public class Descifrador {
+	
+
+	public static void main(String[] args) {
+		
+		String contraseña;
+		String descifrada = "";
+		
+        try (Scanner scanner = new Scanner(System.in)) {
+			System.out.print("Por favor, escribe la contraseña a descifrar: ");
+			 contraseña = scanner.nextLine();
+		}
+        
+        DescifradorSecuencial desc = new DescifradorSecuencial();
+
+        long startTime = System.currentTimeMillis();
+
+		byte[] encodedhash = desc.getHash(contraseña);
+	
+		if (encodedhash != null) {
+			descifrada = desc.descifrarContraseña(encodedhash,contraseña.length());
+		}
+        long endTime = System.currentTimeMillis();
+
+        long tiempoTranscurrido = endTime - startTime;
+        System.out.println("Tiempo de ejecución: " + tiempoTranscurrido + " ms");
+		System.out.println(descifrada);
+		
+	}
+}

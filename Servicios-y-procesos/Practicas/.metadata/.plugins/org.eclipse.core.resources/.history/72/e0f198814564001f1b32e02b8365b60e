@@ -1,0 +1,62 @@
+package ejercicio1;
+
+import java.util.Scanner;
+
+
+public class Descifrador {
+	
+
+	public static void main(String[] args) {
+		
+		String contraseña;
+		String descifrada = "";
+		Scanner scanner = new Scanner(System.in);
+        
+        
+        System.out.print("Por favor, escribe la contraseña a descifrar: ");
+         contraseña = scanner.nextLine();
+	
+		
+	
+        long startTime = System.currentTimeMillis();
+        byte[] encodedhash = Encoder.getHash(contraseña);
+    
+        
+        //DescifradorSecuencial desc = new DescifradorSecuencial();   
+        		
+        
+        if (encodedhash != null) {
+			//descifrada = desc.descifrarContraseña(encodedhash,contraseña.length());
+			
+        	Thread hilo_a = new Thread(new DescifradorParalelo(encodedhash,contraseña.length(),"a"));
+			hilo_a.start();
+			
+			Thread hilo_g = new Thread(new DescifradorParalelo(encodedhash,contraseña.length(),"g"));
+			hilo_g.start();
+			
+			Thread hilo_z = new Thread(new DescifradorParalelo(encodedhash,contraseña.length(),"z"));
+			hilo_z.start();
+			
+			try {
+				hilo_a.join();
+				hilo_g.join();
+				hilo_z.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			descifrada = DescifradorParalelo.getContraseñaEncontrada();
+		}
+   
+        long endTime = System.currentTimeMillis();
+
+        long tiempoTranscurrido = endTime - startTime;
+        System.out.println("Tiempo de ejecución: " + tiempoTranscurrido + " ms");
+		System.out.println("Contraseña descifrada: " + descifrada);
+		
+		scanner.close();
+		
+	}
+}

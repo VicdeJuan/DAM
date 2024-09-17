@@ -1,0 +1,10 @@
+package ejercicio2;
+
+
+
+public class Mina extends Elemento {
+
+	Posicion pos;
+	
+	public Mina
+}

@@ -1,0 +1,48 @@
+package ejercicio2;
+
+import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class Tablero {
+
+	ConcurrentHashMap<Posicion,ObjetoDelTerreno> cuadricula;
+	ArrayList<Jugador> jugadores;
+		
+	public Tablero(
+			ConcurrentHashMap<Posicion,ObjetoDelTerreno> cuadricula,   
+			ArrayList<Jugador> jugadores
+			) {
+		
+		this.cuadricula = cuadricula;
+		this.jugadores = jugadores;
+		
+	}
+	
+	
+	public ObjetoDelTerreno getObjetoEnPosicion(Posicion pos) {
+		return cuadricula.get(pos);
+	}
+	
+	public void añadirObjetoDelTerreno(Jugador jugador) {
+		this.jugadores.add(jugador);
+		cuadricula.put(jugador.getPos(),jugador);
+	}
+
+	public void añadirObjetoDelTerreno(Elementos elem, Posicion pos) {
+		cuadricula.put(pos,elem);
+	}
+	
+	public void mover(Jugador jugador, Posicion posicionAntigua, Posicion posicionNueva ) {
+		cuadricula.remove(posicionAntigua);
+		cuadricula.put(posicionNueva, jugador);
+	}
+	
+	public static void main(String[] args) {
+		Tablero tablero = new Tablero(new ConcurrentHashMap<Posicion,ObjetoDelTerreno>(), new ArrayList<Jugador>());
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+Información del libro:
+ISBN: 978-3-16-148410-0, Título: Cien años de soledad, Autor: Gabriel García Márquez, Año de Publicación: 1967, Disponible: true
+
+Información del libro después del préstamo:
+ISBN: 978-3-16-148410-0, Título: Cien años de soledad, Autor: Gabriel García Márquez, Año de Publicación: 1967, Disponible: false
+
+Libros prestados por el usuario:
+ISBN: 978-3-16-148410-0, Título: Cien años de soledad, Autor: Gabriel García Márquez, Año de Publicación: 1967, Disponible: false
+
+Información del libro después de la devolución:
+ISBN: 978-3-16-148410-0, Título: Cien años de soledad, Autor: Gabriel García Márquez, Año de Publicación: 1967, Disponible: true

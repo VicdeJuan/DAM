@@ -1,0 +1,15 @@
+package ejercicio2;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class Tablero {
+
+	ConcurrentHashMap<Posicion,ObjetoDelTerreno> terreno;
+	ArrayList<Jugador> jugadores;
+	
+	public static void main(String[] args) {
+		//Rellenar tablero con 5  
+		
+	}
+
+}

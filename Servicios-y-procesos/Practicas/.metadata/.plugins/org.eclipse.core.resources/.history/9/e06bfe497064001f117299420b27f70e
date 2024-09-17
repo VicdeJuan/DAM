@@ -1,0 +1,14 @@
+package ejercicio2;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class Tablero {
+
+	ConcurrentHashMap<Posicion,Elementos> terreno;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

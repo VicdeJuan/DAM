@@ -1,0 +1,10 @@
+package ejercicio2;
+
+public abstract interface ObjetoDelTerreno{
+	static final Tablero tablero;
+	
+	public ObjetoDelTerreno(Tablero t) {
+		tablero = t;
+	}
+	
+}

@@ -1,0 +1,67 @@
+package ejercicio2;
+
+import java.util.concurrent.Callable;
+import java.util.logging.Logger;
+
+public class Jugador implements ObjetoDelTerreno,Callable<Object> {
+
+	protected final Tablero tablero;
+	private Posicion pos;
+	volatile boolean estaVivo;
+
+	public Logger log;
+	String name;
+	
+	public Jugador(Tablero tablero,Posicion pos,String name) {
+		this.tablero = tablero;
+		this.setPos(pos);
+		this.name = name;
+		log = Logger.getLogger("Jugador");	
+	}
+	
+	@Override
+	public Object call() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+	
+	
+	/**
+	*			GETTERS Y SETTERS
+	*/
+	
+	public boolean estaVivo() {
+		return estaVivo;
+	}
+
+	public void setEstaVivo(boolean estaVivo) {
+		this.estaVivo = estaVivo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	/**
+	 * @return the pos
+	 */
+	public Posicion getPos() {
+		return pos;
+	}
+
+	/**
+	 * @param pos the pos to set
+	 */
+	public void setPos(Posicion pos) {
+		this.pos = pos;
+	}
+
+}
