@@ -1,0 +1,6 @@
+[submodule "OscarMaestre-servicios-y-procesos-github"]
+	path = OscarMaestre-servicios-y-procesos-github
+	url = https://github.com/OscarMaestre/servicios
+[submodule "txemagon-c-programs-gitlab"]
+	path = txemagon-c-programs-gitlab
+	url = https://gitlab.com/txemagon/c-programs.git
