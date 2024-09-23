@@ -1,4 +1,4 @@
-package hilos.robotsConstructores;
+package hilos.Ejemplo2.robotsConstructores;
 
 public abstract class Robot {
     protected String nombre;

@@ -1,4 +1,4 @@
-package sincronizacion;
+package procesosJava;
 
 public class ProcesoSecundario {
 

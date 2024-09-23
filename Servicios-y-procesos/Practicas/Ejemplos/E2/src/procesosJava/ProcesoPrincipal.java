@@ -1,4 +1,4 @@
-package sincronizacion;
+package procesosJava;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,10 +10,11 @@ public class ProcesoPrincipal {
 		try {
 			String[] infoProceso = {"java","sincronizacion.ProcesoSecundario"};
 			Process proceso = Runtime.getRuntime().exec("pwd");
+			//Process proceso = Runtime.getRuntime().exec(infoProceso);
 			int valorRetorno = proceso.waitFor();
 			if (valorRetorno == 0) {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-				System.out.println("Elproceso se ha completado satisfactoriamente ");
+				System.out.println("El proceso se ha completado satisfactoriamente ");
 				String line;
 	            while ((line = reader.readLine()) != null) {
 	                System.out.println(line);

@@ -9,7 +9,6 @@ public class RatonSecuencial {
 		super();
 		this.nombre= nombre;
 		this.tiempoAlimentacion = tiempoAlimentacion;
-		
 	}
 	
 	public void comer() {

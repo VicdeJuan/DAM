@@ -1,4 +1,4 @@
-package hilos.robotsConstructores;
+package hilos.Ejemplo2.robotsConstructores;
 
 //Clase RobotConstructor que extiende Robot
 public class RobotConstructor extends Robot implements Runnable{

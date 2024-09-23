@@ -1,11 +1,11 @@
-package hilos.problemasConcurrencia;
+package hilos.Ejemplo1.problemasConcurrencia;
 
-public class RatonSimple implements Runnable {
+public class RatonConProblemas implements Runnable {
 	private String nombre;
 	private int tiempoAlimentacion;
 	private int alimentoConsumido;
 	
-	public RatonSimple(String nombre, int tiempoAlimentacion) {
+	public RatonConProblemas(String nombre, int tiempoAlimentacion) {
 		super();
 		this.nombre = nombre;
 		this.tiempoAlimentacion = tiempoAlimentacion;
@@ -31,7 +31,7 @@ public class RatonSimple implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		RatonSimple Arturo = new RatonSimple("Arturo",4);
+		RatonConProblemas Arturo = new RatonConProblemas("Arturo",4);
 		
 		for	(int i=0; i<1000;i++) {
 			new Thread(Arturo).start();	
