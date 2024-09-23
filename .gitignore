@@ -2,6 +2,9 @@
 com.github.*
 .metadata/*
 
+# Vim
+*.swp
+
 # LaTeX
 *.aux
 *.log

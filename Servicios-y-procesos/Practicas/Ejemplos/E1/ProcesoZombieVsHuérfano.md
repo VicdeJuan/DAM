@@ -8,10 +8,10 @@ Los términos "proceso zombie" y "proceso huérfano" se refieren a diferentes es
   
 - **Características**:
   - **Estado**: El proceso ha terminado (ha llamado a `exit()` o ha terminado por una señal), pero su información de estado aún está disponible para el proceso padre.
-  - **Recursos**: Consume poca memoria, ya que ha terminado, pero ocupa una entrada en la tabla de procesos.
-  - **Causas**: La creación de procesos zombies generalmente ocurre cuando el padre no espera a que el hijo termine.
+  - **Recursos**: Consume poca memoria, ya que ha terminado, pero ocupa una entrada en la tabla de procesos. Una cantidad desorbitada de procesos zombie podrían copar la tabla de procesos impiendo la creación de nuevos procesos.
+  - **Causas**: La creación de procesos zombies ocurre cuando el padre no espera a que el hijo termine.
 
-- **Ejemplo**: Si un proceso hijo se termina y el padre no lo espera, el hijo se convierte en un zombie. El sistema operativo mantiene su estado hasta que el padre lo recoge, evitando que se liberen completamente los recursos del hijo.
+- **Ejemplo**: Si un proceso hijo se termina y el padre no lo espera, el hijo se convierte en un zombie. El sistema operativo mantiene su estado hasta que el padre lo recoge, evitando que se liberen completamente los recursos del hijo. 
 
 ## Proceso Huérfano
 
@@ -37,5 +37,4 @@ Los términos "proceso zombie" y "proceso huérfano" se refieren a diferentes es
 ## Conclusión
 
 Ambos tipos de procesos son importantes para la gestión de procesos en sistemas operativos. Los zombies son un problema que puede resultar en fugas de recursos si no se manejan adecuadamente, mientras que los huérfanos son una parte normal del ciclo de vida de los procesos en un sistema operativo.
- el error del siguiente código:
 
