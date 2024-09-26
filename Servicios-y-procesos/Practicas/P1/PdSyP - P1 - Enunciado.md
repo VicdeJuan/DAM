@@ -28,10 +28,17 @@ _Recuerda utilizar el `wait` para no generar procesos zombies y controlar el pos
 
 ## Ejercicio 3:
 
+### Parte 1 
+Crea un programa que calcular la suma de los números primos entre 1 y 1000000 y, después, que calcule la suma de los números impares entre 1 y 5000000.
+
+_Puedes utilizar `unsigned long long int` como tipo de dato_
+### Parte 2
 Crea un programa que utilice la programación concurrente de procesos para computar en paralelo dos cálculos complejos.
 
 El primer subproceso debe calcular la suma de los números primos entre 1 y 1,000,000.
 El segundo subproceso debe calcular el producto de los números impares entre 1 y 500,000 (por simplicidad, puedes limitar el resultado en caso de desbordamiento utilizando el tipo de dato unsigned long long int).
+
+*Recuerda hacer `wait` tantas veces como forks hayas hecho*
 
 Puedes ayudarte de las siguientes funciones:
 ```
