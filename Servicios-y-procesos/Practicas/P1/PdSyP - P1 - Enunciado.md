@@ -25,7 +25,55 @@ Lo único que tiene que hacer cada proceso es imprimir por pantalla un mensaje c
 
 _Recuerda utilizar el `wait` para no generar procesos zombies y controlar el posible error de `fork()`_
 
+
 ## Ejercicio 3:
+
+Crea un programa que utilice la programación concurrente de procesos para computar en paralelo dos cálculos complejos.
+
+El primer subproceso debe calcular la suma de los números primos entre 1 y 1,000,000.
+El segundo subproceso debe calcular el producto de los números impares entre 1 y 500,000 (por simplicidad, puedes limitar el resultado en caso de desbordamiento utilizando el tipo de dato unsigned long long int).
+
+Puedes ayudarte de las siguientes funciones:
+```
+
+/**
+ * Function to compute if a number given is even (par) or odd (impar).
+ * returns 0 if the number is even, 1 if the number is odd.
+ */
+int isOdd(int num){
+	return num%2;
+}
+
+/** 
+ * Function to compute if a number is prime or not.
+ * returns 1 if the number is prime or 0 if it is not prime
+ */
+int checkPrime(int num)
+{
+    // 0, 1 and negative numbers are not prime
+    if(num < 2){
+        return 0;
+    }
+    else{   
+    // no need to run loop till num-1 as for any number x the numbers in
+    // the range(num/2 + 1, num) won't be divisible anyways. 
+    // Example 36 wont be divisible by anything b/w 19-35
+        int x = num/2;
+        for(int i = 2; i <=x; i++)
+        {
+            if(num % i == 0)
+            {
+                return 0;
+            }
+        }
+    }
+    // the number would be prime if we reach here
+    return 1;
+}
+
+```
+
+## Ejercicio 4:
 
 Encuentra el/los errores del siguiente código, explica porqué son errores y escribe el código correcto. El padre debería preguntar qué tal y el hijo contestar "bien".
 
