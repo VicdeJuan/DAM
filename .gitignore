@@ -1,3 +1,6 @@
+#Extensión inventada para ignorar las soluciones temporalmente.
+*.sol
+
 #APIs
 com.github.*
 .metadata/*
