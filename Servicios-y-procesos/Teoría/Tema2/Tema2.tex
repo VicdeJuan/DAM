@@ -94,7 +94,7 @@ configuración de servicios.
 \item El antiguo initd está siendo desplazado pro systemd (se utiliza el comando
 systemctl).
 \item \texttt{systemctl list-unit-files} $\to$ Muestra la lista de los servicios existentes en el sistema.
-\item \texttt{systemctl –type=service} $\to$ Muestra la lista de los servicios cargados en el sistema.
+\item \texttt{systemctl --type=service} $\to$ Muestra la lista de los servicios cargados en el sistema.
 \item Para todos los servicios se pueden ejecutar comandos del tipo:
 \item systemctl acción servicio
 \item servicio $\to$ nombre del servicio.
@@ -106,9 +106,15 @@ systemctl).
     \begin{figure}
         \centering
         \includegraphics[width=1\linewidth]{img/serviciosLinux.png} 
-        \caption{Estados de un proceso.}
+        \caption{Tabla de uso \texttt{systemcl.}}
     \end{figure}
 \end{frame}
+
+
+\begin{frame}{Tarea}
+
+\end{frame}
+
 
 \begin{frame}{Servicios en Windows}
     \begin{itemize}
@@ -122,6 +128,14 @@ systemctl).
 
 \begin{frame}{Práctica}
 \centering Haz capturas de pantalla de lo que hace cada comando en cada SO.
+    \begin{itemize}
+        \item Adjunta una captura de \texttt{systemctl}.
+        \item Encuentra en \texttt{systemctl} el servicio "cron".
+        \item Consulta el \texttt{status} del servicio cron.
+        \item Obten en Windows el nombre exacto del servicio de Windows Update.
+        \item Elige un servicio de Windows que se esté ejecutando e investiga qué hace. Explícalo brevemente.
+    \end{itemize}
+
 \end{frame}
 
 
