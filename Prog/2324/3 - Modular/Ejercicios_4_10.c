@@ -59,6 +59,44 @@ void calcular_area_figura(){
 	}
 }
 
+double calcular_promedio_tres_num(double num1, double num2,double num3){
+	return (num1+num2+num3)/3;
+}
+double calcular_promedio_cuatro_num(double num1, double num2,double num3,double num4){
+	return (num1+num2+num3+num4)/4;
+}
+
+void calcular_promedio(){
+	// Los scanfs vienen aquí porque se necesitan los números como argumento de 
+	// las funciones auxiliares y desde el main no es posible porque esta función
+	// no recibe argumentos.
+	int cantidad_numeros;
+	double num1,num2,num3,num4;
+	printf("¿De cuántos números quiere hacer el promedio? (3 o 4) ");
+	scanf("%d",&cantidad_numeros);
+	if (cantidad_numeros == 3){
+		printf("Introduce el primer número: ");
+		scanf("%lf",&num1);
+		printf("Introduce el segundo número: ");
+		scanf("%lf",&num2);
+		printf("Introduce el tercer número: ");
+		scanf("%lf",&num3);
+		printf("El promedio de %lf, %lf y %lf es %lf\n",num1,num2,num3,calcular_promedio_tres_num(num1,num2,num3));
+	} else if (cantidad_numeros == 4){
+		printf("Introduce el primer número: ");
+		scanf("%lf",&num1);
+		printf("Introduce el segundo número: ");
+		scanf("%lf",&num2);
+		printf("Introduce el tercer número: ");
+		scanf("%lf",&num3);
+		printf("Introduce el cuarto número: ");
+		scanf("%lf",&num4);
+		printf("El promedio de %lf,%lf, %lf y %lf es %lf\n",num1,num2,num3,num4,calcular_promedio_cuatro_num(num1,num2,num3,num4));
+	} else{
+		printf("Error en la función calcular_promedio\n");
+	}
+}
+
 int main(){
 	// Declaración de variables.	
 	int opcion;
@@ -86,6 +124,8 @@ int main(){
 			calcular_area_figura();
 			break;
 		case 3:
+			calcular_promedio();
+			break;
 		case 4:
 		case 5:
 		case 6:
