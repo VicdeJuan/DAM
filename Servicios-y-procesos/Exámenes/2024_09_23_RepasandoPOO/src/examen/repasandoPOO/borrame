@@ -1,0 +1,181 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        // Preparar el archivo CSV
+        try (FileWriter writer = new FileWriter("evaluacion.csv")) {
+            writer.append("Requisito,¿Se cumple?,Observación\n");
+
+            // Evaluación de los requisitos
+            evaluarClasePersona(writer);
+            evaluarClaseVehiculo(writer);
+            evaluarClaseCoche(writer);
+            evaluarClaseCamion(writer);
+            evaluarFuncionamientoGeneralCon3Vehiculos(writer);
+            evaluarFuncionamientoGeneralCon6Vehiculos(writer);
+
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo de evaluación: " + e.getMessage());
+        }
+    }
+
+    // Evaluar clase Persona
+    private static void evaluarClasePersona(FileWriter writer) throws IOException {
+        try {
+            Persona persona = new Persona("Prueba");
+            String nombre = persona.getNombre();
+            
+            if (nombre.equals("Prueba")) {
+                writer.append("Clase Persona con nombre (String),2,Correctamente implementada\n");
+            } else {
+                writer.append("Clase Persona con nombre (String),1,Error parcial en la implementación del nombre\n");
+            }
+        } catch (Exception e) {
+            writer.append("Clase Persona con nombre (String),0,Fallo en la clase Persona: " + e.getMessage() + "\n");
+        }
+    }
+
+    // Evaluar clase Vehículo
+    private static void evaluarClaseVehiculo(FileWriter writer) throws IOException {
+        try {
+            // Crear un vehículo sin propietario
+            Vehículo vehiculo1 = new Vehículo("Marca", "Modelo", 2020);
+            // Crear un vehículo con propietario
+            Persona persona = new Persona("Propietario");
+            Vehículo vehiculo2 = new Vehículo("Marca", "Modelo", 2020, persona);
+
+            if (Vehículo.getContador() == 2 && vehiculo1.getPropietario() == null && vehiculo2.getPropietario().getNombre().equals("Propietario")) {
+                writer.append("Clase Vehículo con marca, modelo, año, propietario y contador estático,2,Correctamente implementada\n");
+            } else {
+                writer.append("Clase Vehículo con marca, modelo, año, propietario y contador estático,1,Implementación parcial o error en el contador, propietario o constructores\n");
+            }
+        } catch (Exception e) {
+            writer.append("Clase Vehículo con marca, modelo, año, propietario y contador estático,0,Fallo en la clase Vehículo: " + e.getMessage() + "\n");
+        }
+    }
+
+    // Evaluar clase Coche
+    private static void evaluarClaseCoche(FileWriter writer) throws IOException {
+        try {
+            // Crear un coche sin propietario
+            Coche coche1 = new Coche("Marca", "Modelo", 2020, 4);
+            // Crear un coche con propietario
+            Persona propietario = new Persona("Propietario");
+            Coche coche2 = new Coche("Marca", "Modelo", 2021, 4, propietario);
+
+            if (coche1.getNumeroPuertas() == 4 && coche2.getPropietario().getNombre().equals("Propietario")) {
+                writer.append("Clase Coche hereda de Vehículo con número de puertas y constructor con/ sin propietario,2,Correctamente implementada\n");
+            } else {
+                writer.append("Clase Coche hereda de Vehículo con número de puertas y constructor con/ sin propietario,1,Implementación parcial o error en número de puertas o constructores\n");
+            }
+        } catch (Exception e) {
+            writer.append("Clase Coche hereda de Vehículo con número de puertas y constructor con/ sin propietario,0,Fallo en la clase Coche: " + e.getMessage() + "\n");
+        }
+    }
+
+    // Evaluar clase Camión
+    private static void evaluarClaseCamion(FileWriter writer) throws IOException {
+        try {
+            // Crear un camión sin propietario
+            Camión camion1 = new Camión("Marca", "Modelo", 2020, 18);
+            // Crear un camión con propietario
+            Persona propietario = new Persona("Propietario");
+            Camión camion2 = new Camión("Marca", "Modelo", 2021, 20, propietario);
+
+            if (camion1.getCapacidadCarga() == 18 && camion2.getPropietario().getNombre().equals("Propietario")) {
+                writer.append("Clase Camión hereda de Vehículo con capacidad de carga y constructor con/ sin propietario,2,Correctamente implementada\n");
+            } else {
+                writer.append("Clase Camión hereda de Vehículo con capacidad de carga y constructor con/ sin propietario,1,Implementación parcial o error en capacidad de carga o constructores\n");
+            }
+        } catch (Exception e) {
+            writer.append("Clase Camión hereda de Vehículo con capacidad de carga y constructor con/ sin propietario,0,Fallo en la clase Camión: " + e.getMessage() + "\n");
+        }
+    }
+
+    // Evaluar el funcionamiento general con 3 vehículos
+    private static void evaluarFuncionamientoGeneralCon3Vehiculos(FileWriter writer) throws IOException {
+        try {
+            // Crear personas
+            Persona persona1 = new Persona("Juan");
+            Persona persona2 = new Persona("Ana");
+
+            // Crear vehículos y asignar propietarios
+            Coche coche1 = new Coche("Toyota", "Corolla", 2020, 4);
+            coche1.setPropietario(persona1);
+            
+            Coche coche2 = new Coche("Honda", "Civic", 2021, 4);
+            coche2.setPropietario(persona2);
+            
+            Coche coche3 = new Coche("Ford", "Focus", 2022, 4); // Sin propietario
+
+            // Verificar los propietarios
+            if (coche1.getPropietario().getNombre().equals("Juan") &&
+                coche2.getPropietario().getNombre().equals("Ana") &&
+                coche3.getPropietario() == null) {
+                
+                writer.append("Funcionamiento general (3 vehículos): Asignación de propietarios,2,Asignación correcta\n");
+            } else {
+                writer.append("Funcionamiento general (3 vehículos): Asignación de propietarios,1,Error parcial en la asignación de propietarios\n");
+            }
+
+            // Verificar el contador de vehículos
+            if (Vehículo.getContador() == 3) {
+                writer.append("Funcionamiento general (3 vehículos): Contador estático de vehículos,2,Contador correcto\n");
+            } else {
+                writer.append("Funcionamiento general (3 vehículos): Contador estático de vehículos,1,Error en el manejo del contador\n");
+            }
+
+        } catch (Exception e) {
+            writer.append("Funcionamiento general (3 vehículos): Asignación de propietarios y contador,0,Fallo en el funcionamiento general: " + e.getMessage() + "\n");
+        }
+    }
+
+    // Evaluar el funcionamiento general con 6 vehículos
+    private static void evaluarFuncionamientoGeneralCon6Vehiculos(FileWriter writer) throws IOException {
+        try {
+            // Crear personas
+            Persona persona1 = new Persona("Juan");
+            Persona persona2 = new Persona("Ana");
+
+            // Crear vehículos y asignar propietarios
+            Coche coche1 = new Coche("Toyota", "Corolla", 2020, 4);
+            coche1.setPropietario(persona1);
+            
+            Coche coche2 = new Coche("Honda", "Civic", 2021, 4);
+            coche2.setPropietario(persona2);
+            
+            Coche coche3 = new Coche("Ford", "Focus", 2022, 4); // Sin propietario
+
+            Camión camion1 = new Camión("Mercedes", "Actros", 2019, 18);
+            camion1.setPropietario(persona1);
+
+            Camión camion2 = new Camión("Volvo", "FH", 2020, 20); // Sin propietario
+
+            Coche coche4 = new Coche("Tesla", "Model 3", 2022, 4); // Sin propietario
+
+            // Verificar los propietarios
+            if (coche1.getPropietario().getNombre().equals("Juan") &&
+                coche2.getPropietario().getNombre().equals("Ana") &&
+                coche3.getPropietario() == null &&
+                camion1.getPropietario().getNombre().equals("Juan") &&
+                camion2.getPropietario() == null &&
+                coche4.getPropietario() == null) {
+                
+                writer.append("Funcionamiento general (6 vehículos): Asignación de propietarios,2,Asignación correcta\n");
+            } else {
+                writer.append("Funcionamiento general (6 vehículos): Asignación de propietarios,1,Error parcial en la asignación de propietarios\n");
+            }
+
+            // Verificar el contador de vehículos
+            if (Vehículo.getContador() == 6) {
+                writer.append("Funcionamiento general (6 vehículos): Contador estático de vehículos,2,Contador correcto\n");
+            } else {
+                writer.append("Funcionamiento general (6 vehículos): Contador estático de vehículos,1,Error en el manejo del contador\n");
+            }
+
+        } catch (Exception e) {
+            writer.append("Funcionamiento general (6 vehículos): Asignación de propietarios y contador,0,Fallo en el funcionamiento general: " + e.getMessage() + "\n");
+        }
+    }
+}

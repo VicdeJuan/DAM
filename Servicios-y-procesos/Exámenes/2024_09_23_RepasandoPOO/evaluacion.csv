@@ -1,0 +1,16 @@
+Requisito,¿Se cumple?,Observación
+Clase Persona con nombre (String),2,Correctamente implementada
+Clase Vehículo con marca, modelo, año, propietario y contador estático,2,Correctamente implementada
+Clase Vehículo tiene todos sus atributos como private,2,Atributos correctamente declarados como private
+Clase Coche hereda de Vehículo con número de puertas y constructor con/ sin propietario,2,Correctamente implementada
+Clase Coche no redeclara atributos heredados de Vehículo,2,Atributos heredados no redeclarados
+Clase Coche no tiene getters/setters para atributos heredados de Vehículo,2,No hay getters/setters para atributos heredados
+Clase Coche tiene todos sus atributos como private,2,Atributos correctamente declarados como private
+Clase Camión hereda de Vehículo con capacidad de carga y constructor con/ sin propietario,2,Correctamente implementada
+Clase Camión no redeclara atributos heredados de Vehículo,2,Atributos heredados no redeclarados
+Clase Camión no tiene getters/setters para atributos heredados de Vehículo,2,No hay getters/setters para atributos heredados
+Clase Camión tiene todos sus atributos como private,2,Atributos correctamente declarados como private
+Funcionamiento general (3 vehículos): Asignación de propietarios,2,Asignación correcta
+Funcionamiento general (3 vehículos): Contador estático de vehículos,2,Contador correcto
+Funcionamiento general (6 vehículos): Asignación de propietarios,2,Asignación correcta
+Funcionamiento general (6 vehículos): Contador estático de vehículos,2,Contador correcto
