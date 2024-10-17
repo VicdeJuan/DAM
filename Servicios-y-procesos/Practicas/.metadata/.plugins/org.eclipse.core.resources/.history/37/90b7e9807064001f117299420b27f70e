@@ -1,5 +1,0 @@
-package ejercicio2;
-
-public enum Elementos {
-	mina,pepita,nada
-}

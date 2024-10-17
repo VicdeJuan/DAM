@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+/home/vicdejuan/SistemasYProcesos/Practicas/.metadata/.plugins/org.eclipse.jdt.core
-3376145549.index
-1865797976.index
-2275703197.index

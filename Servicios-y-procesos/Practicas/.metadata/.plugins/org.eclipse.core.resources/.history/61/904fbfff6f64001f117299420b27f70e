@@ -1,6 +1,0 @@
-package ejercicio2;
-
-public abstract class Elemento {
-	Posicion pos;
-	
-}	

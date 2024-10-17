@@ -1,7 +1,0 @@
-package ejercicio2;
-
-public abstract interface ObjetoDelTerreno{
-	static final Tablero tablero;
-	
-	
-}

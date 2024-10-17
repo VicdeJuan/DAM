@@ -1,0 +1,43 @@
+# Eclipse-specific files
+.metadata/
+.classpath
+.project
+.settings/
+
+# Build output
+bin/
+build/
+out/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Others
+*.jar
+*.war
+*.ear
+*.class
+*.swp
+*.swo
+*.tmp
+

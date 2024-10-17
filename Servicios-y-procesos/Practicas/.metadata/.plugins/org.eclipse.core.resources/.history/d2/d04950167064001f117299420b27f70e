@@ -1,7 +1,0 @@
-package ejercicio2;
-
-import java.lang.Object.Elemento;
-
-public class Mina extends Elemento {
-
-}

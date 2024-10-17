@@ -1,5 +1,0 @@
-package ejercicio2;
-
-public enum Elementos implements ObjetoDelTerreno{
-	mina,pepita
-}
