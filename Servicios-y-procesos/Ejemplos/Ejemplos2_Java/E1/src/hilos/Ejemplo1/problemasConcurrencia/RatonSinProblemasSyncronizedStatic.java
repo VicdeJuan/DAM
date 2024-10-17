@@ -14,7 +14,11 @@ public class RatonSinProblemasSyncronizedStatic implements Runnable {
 	
 	public void comer() {
 		try {
-			synchronized (this){ // Aquí colocado, no arregla nada porque es como si fuera secuencial
+			synchronized (this){ 
+				// Aquí colocado, no arregla nada porque es como si fuera secuencial
+				// Ojo con lo que se sincroniza. Si la variable es estática, hay que sincronizar
+				// la clase, no la instancia del objeto.
+				//  synchronized (RatonSinProblemasSyncronizedStatic.class)
 				System.out.printf("El ratón %s ha comenzado a alimentarse\n",nombre);
 				Thread.sleep(tiempoAlimentacion*1000);
 			//2º, colocarlo aquí: synchronized (this){

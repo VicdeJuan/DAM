@@ -3,7 +3,7 @@ package hilos.Ejemplo1.problemasConcurrencia;
 public class RatonSinProblemasSyncronized implements Runnable {
 	private String nombre;
 	private int tiempoAlimentacion;
-	static int alimentoConsumido;
+	int alimentoConsumido;
 	
 	public RatonSinProblemasSyncronized(String nombre, int tiempoAlimentacion) {
 		super();
