@@ -1,4 +1,4 @@
-package hilos.Ejercicios.condicionesDeCarrera.Ejer2;
+package hilos.Ejercicios.condicionesDeCarrera.Ejer02;
 
 class Venta implements Runnable {
     private Inventario inventario;

@@ -1,4 +1,4 @@
-package hilos.Ejercicios.condicionesDeCarrera.Ejer1;
+package hilos.Ejercicios.condicionesDeCarrera.Ejer01;
 
 class Cliente implements Runnable {
     private ReservaEntradas reserva;
@@ -36,13 +36,18 @@ public class ReservaEntradas {
         Thread cliente4 = new Thread(new Cliente(reserva, "Cliente 4"));
         Thread cliente5 = new Thread(new Cliente(reserva, "Cliente 5"));
         Thread cliente6 = new Thread(new Cliente(reserva, "Cliente 6"));
-
+        Thread cliente7 = new Thread(new Cliente(reserva, "Cliente 7"));
+        Thread cliente8 = new Thread(new Cliente(reserva, "Cliente 8"));
+        
+        
         cliente1.start();
         cliente2.start();
         cliente3.start();
         cliente4.start();
         cliente5.start();
         cliente6.start();
+        cliente7.start();
+        cliente8.start();
     }
 }
 
