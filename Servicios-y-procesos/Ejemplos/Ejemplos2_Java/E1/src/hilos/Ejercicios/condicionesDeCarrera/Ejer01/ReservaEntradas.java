@@ -18,7 +18,7 @@ class Cliente implements Runnable {
 public class ReservaEntradas {
     private int entradasDisponibles = 5;
 
-    public void reservarEntrada(String nombreCliente) {
+    public synchronized void reservarEntrada(String nombreCliente) {
         if (entradasDisponibles > 0) {
             entradasDisponibles--;
             System.out.println("Entrada reservada para " + nombreCliente + ". Entradas restantes: " + entradasDisponibles);

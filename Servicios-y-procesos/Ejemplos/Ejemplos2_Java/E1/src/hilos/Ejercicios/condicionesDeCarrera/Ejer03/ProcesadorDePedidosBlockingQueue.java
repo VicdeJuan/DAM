@@ -1,15 +1,18 @@
 package hilos.Ejercicios.condicionesDeCarrera.Ejer03;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
- * EJEMPLO DE PRODUCTOR CONSUMIDOR.
+ * EJEMPLO DE PRODUCTOR CONSUMIDOR ÓPTIMO
  */
-class AgregarPedido implements Runnable {
+class BQAgregarPedido implements Runnable {
     private ProcesadorDePedidosBlockingQueue procesador;
+    // Más info en:
+    // https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/concurrent/package-summary.html
 
-    public AgregarPedido(ProcesadorDePedidosBlockingQueue procesador) {
+    public BQAgregarPedido(ProcesadorDePedidosBlockingQueue procesador) {
         this.procesador = procesador;
     }
 
@@ -27,10 +30,10 @@ class AgregarPedido implements Runnable {
 }
 
 
-class ProcesarPedido implements Runnable {
+class BQProcesarPedido implements Runnable {
     private ProcesadorDePedidosBlockingQueue procesador;
 
-    public ProcesarPedido(ProcesadorDePedidosBlockingQueue procesador) {
+    public BQProcesarPedido(ProcesadorDePedidosBlockingQueue procesador) {
         this.procesador = procesador;
     }
 
@@ -49,7 +52,7 @@ class ProcesarPedido implements Runnable {
 
 
 public class ProcesadorDePedidosBlockingQueue {
-    private List<String> pedidos = new ArrayList<>();
+    private LinkedBlockingQueue<String> pedidos = new LinkedBlockingQueue<String>();
 
     public void agregarPedido(String pedido) {
         pedidos.add(pedido);
@@ -57,8 +60,17 @@ public class ProcesadorDePedidosBlockingQueue {
     }
 
     public void procesarPedido() {
-        if (!pedidos.isEmpty()) {
-            String pedido = pedidos.remove(0);
+    	
+    	String pedido;
+		try {
+			//pedido = pedidos.poll(); Devuelve null si no hay ninguno. ¿Te interesa que el hilo 
+			// espere a que llegue un pedido? Modelo PRODUCTOR-CONSUMIDOR.
+			pedido = pedidos.take(); // Espera a que haya un pedido para procesar. 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return;
+		} 
+    	if (pedido != null) {    
             System.out.println("Pedido procesado: " + pedido);
         } else {
             System.out.println("No hay pedidos para procesar.");
@@ -68,8 +80,8 @@ public class ProcesadorDePedidosBlockingQueue {
     public static void main(String[] args) {
         ProcesadorDePedidosBlockingQueue procesador = new ProcesadorDePedidosBlockingQueue();
 
-        Thread hiloAgregar = new Thread(new AgregarPedido(procesador));
-        Thread hiloProcesar = new Thread(new ProcesarPedido(procesador));
+        Thread hiloAgregar = new Thread(new BQAgregarPedido(procesador));
+        Thread hiloProcesar = new Thread(new BQProcesarPedido(procesador));
 
         hiloAgregar.start();
         hiloProcesar.start();

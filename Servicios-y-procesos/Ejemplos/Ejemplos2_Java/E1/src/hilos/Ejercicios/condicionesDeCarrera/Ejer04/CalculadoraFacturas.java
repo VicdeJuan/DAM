@@ -28,6 +28,7 @@ public class CalculadoraFacturas {
     public void calcularFactura(double monto, double descuento, double tasa) {
         double montoConDescuento = monto - (monto * descuento);
         double montoConTasa = montoConDescuento + (montoConDescuento * tasa);
+        
         total += montoConTasa;
         System.out.println("Factura procesada: " + montoConTasa + ". Total acumulado: " + total);
     }
