@@ -7,10 +7,11 @@ int main(){
 	printf("Introduce un número: ");
 	scanf("%d",&num);
 	for (int i = 1; i<=num; i++){
-		resultado = resultado + i;
+	   for (int j = 1; j<=num; j++){ //
+		printf("*");
+	   }
+	   printf("\n");
 	}
-
-	printf("La suma de los %d primeros números es: %d\n",num,resultado);	
-
+	printf("\n");
 	return EXIT_SUCCESS;
 }
