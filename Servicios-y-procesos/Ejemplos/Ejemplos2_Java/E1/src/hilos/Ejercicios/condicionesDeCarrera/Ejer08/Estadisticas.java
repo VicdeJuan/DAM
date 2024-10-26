@@ -23,7 +23,7 @@ public class Estadisticas {
     private int suma = 0;
     private int conteo = 0;
 
-    public void actualizarEstadisticas(int valor) {
+    public synchronized void actualizarEstadisticas(int valor) {
         suma += valor;
         conteo++;
         double promedio = (double) suma / conteo;
@@ -38,5 +38,13 @@ public class Estadisticas {
 
         hilo1.start();
         hilo2.start();
+        
+        try {
+			hilo1.join();
+			hilo2.join();
+        } catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        
     }
 }

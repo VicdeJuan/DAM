@@ -23,18 +23,22 @@ class ProcesarFactura implements Runnable {
 
 
 public class CalculadoraFacturas {
-    private double total;
+    volatile private double total;
+    Object lockTotal = new Object();
 
     public void calcularFactura(double monto, double descuento, double tasa) {
         double montoConDescuento = monto - (monto * descuento);
         double montoConTasa = montoConDescuento + (montoConDescuento * tasa);
+        synchronized (lockTotal) {
+        	total += montoConTasa;
+            System.out.println("Factura procesada: " + montoConTasa + ". Total acumulado: " + total);	
+        }
         
-        total += montoConTasa;
-        System.out.println("Factura procesada: " + montoConTasa + ". Total acumulado: " + total);
     }
 
+    // Al ser declarada volatile, no hace falta sincronizar
     public double getTotal() {
-        return total;
+        return total; 
     }
     
     public static void main(String[] args) {

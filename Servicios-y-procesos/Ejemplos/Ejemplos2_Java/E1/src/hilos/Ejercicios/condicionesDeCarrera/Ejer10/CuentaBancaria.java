@@ -14,7 +14,7 @@ class Transferencia implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000000; i++) {
             origen.transferir(destino, cantidad);
         }
     }
@@ -28,28 +28,37 @@ public class CuentaBancaria {
         this.balance = balanceInicial;
     }
 
-    public void depositar(int cantidad) {
+    public synchronized void depositar(int cantidad) {
         balance += cantidad;
     }
 
-    public void retirar(int cantidad) {
+    public synchronized void retirar(int cantidad) {
         balance -= cantidad;
     }
 
     public void transferir(CuentaBancaria destino, int cantidad) {
-        this.retirar(cantidad);
-        destino.depositar(cantidad);
+    	/* ¿Qué ocurre si este método se interrumpe?
+    	 * 
+    	 * Si este método se interrumpe, se ha retirado una cantidad de una cuenta que ha pasado
+    	 * a estar en un "limbo". Un dinero que no está en ninguna cuenta, solo tiene constancia
+    	 * de ese dinero el hilo que está haciendo la transferencia.
+    	 */
+    	this.retirar(cantidad);
+    	destino.depositar(cantidad);
+    	   	        			
     }
 
-    public int getBalance() {
+    // Podríamos haber declarado como volatile, pero por variar, sincronizamos este método.
+    public synchronized int getBalance() {
         return balance;
     }
     
     public static void main(String[] args) {
-        CuentaBancaria cuenta1 = new CuentaBancaria(1000);
-        CuentaBancaria cuenta2 = new CuentaBancaria(1000);
+        CuentaBancaria cuenta1 = new CuentaBancaria(100000);
+        CuentaBancaria cuenta2 = new CuentaBancaria(100000);
 
-        Thread hilo1 = new Thread(new Transferencia(cuenta1, cuenta2, 12));
+        // Modificamos las cantidades para que se vea que funcionan correctamente.
+        Thread hilo1 = new Thread(new Transferencia(cuenta1, cuenta2, 10));
         Thread hilo2 = new Thread(new Transferencia(cuenta2, cuenta1, 10));
 
         hilo1.start();

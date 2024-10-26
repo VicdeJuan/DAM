@@ -40,11 +40,8 @@ public class Inventario {
 	private final Object lock = new Object();
 
     public Inventario(int stockInicial) {
-        this.stock = stockInicial;
-                
-    }
-
-    /**
+        this.stock = stockInicial;   
+    }/**
      * Problema con sincronizar sobre un Integer mutable:
 			Inmutabilidad aparente de Integer: En Java, los objetos de tipo Integer son inmutables. 
 				Sin embargo, cuando realizas operaciones aritméticas como stock += cantidad;, 
