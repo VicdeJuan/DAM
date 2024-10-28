@@ -1,4 +1,4 @@
-package hilos.interbloqueos.ejer01;
+package src.hilos.interbloqueos.ejer01;
 
 class CuentaBancaria {
     private int balance;

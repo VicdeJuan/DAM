@@ -1,4 +1,4 @@
-package hilos.interbloqueos.ejer02;
+package src.hilos.interbloqueos.ejer02;
 
 public class ColaArticulos {
     private int[] articulos = new int[10];

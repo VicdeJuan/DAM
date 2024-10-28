@@ -1,4 +1,4 @@
-package hilos.interbloqueos.ejer04;
+package src.hilos.interbloqueos.ejer04;
 
 public class Entradas{
     public static void main(String[] args) {
