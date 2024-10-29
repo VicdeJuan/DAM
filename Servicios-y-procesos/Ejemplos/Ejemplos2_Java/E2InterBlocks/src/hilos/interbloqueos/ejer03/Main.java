@@ -1,4 +1,4 @@
-package src.hilos.interbloqueos.ejer03;
+package hilos.interbloqueos.ejer03;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
