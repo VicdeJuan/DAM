@@ -32,9 +32,10 @@ int main(){
 	}
 	printf("\n");
 	
-	str3 = str1;
+	/**
+	str3 = str1; Esta asignación no está permitida.
 	str1[0] = 'I';
-	printf("%c",str3[0]);	
+	printf("%c",str3[0]);	*/
 
 	return EXIT_SUCCESS;
 }
