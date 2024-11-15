@@ -18,7 +18,7 @@ int main(){
 	printf("Antes:\n");
 	printf("%d\n",n1); //5
 	printf("%d\n",n2); //10
-	intercambiar(&n1,&n2);
+	intercambiar(&n1,&n2); // Paso son las referencias de las variables, es decir, sus direcciones.
 	printf("Después:\n");
 	printf("%d\n",n1); //5
 	printf("%d\n",n2); //10
