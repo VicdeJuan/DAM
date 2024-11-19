@@ -17,6 +17,13 @@ void renombrar(Estudiante * estudiante, char * nuevo_nombre){
 	strcpy(estudiante->nombre,nuevo_nombre);
 }
 
+int compararEstudiantesPorNotaPorValor();
+int compararEstudiantesPorEdadPorValor();
+
+int compararEstudiantesPorNotaPorReferencia();
+int compararEstudiantesPorEdadPorReferencia();
+
+
 int main() {
     Estudiante est1 = {"Dani",20,8.5};
 
