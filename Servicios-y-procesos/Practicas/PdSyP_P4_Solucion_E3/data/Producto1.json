@@ -1,0 +1,1 @@
+[{\"id\":1,\"nombre\":\"Laptop\",\"precio\":999.99,\"enStock\":true},{\"id\":2,\"nombre\":\"Smartphone\",\"precio\":499.99,\"enStock\":false},{\"id\":3,\"nombre\":\"Tablet\",\"precio\":299.99,\"enStock\":true}]

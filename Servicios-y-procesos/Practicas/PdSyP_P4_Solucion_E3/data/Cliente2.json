@@ -1,0 +1,7 @@
+{
+  "id": "Cliente2",
+  "nombre": "Bisbal",
+  "saldo": 2000.00,
+  "numeroCuenta": "2345678901",
+  "direccion": "Avenida Secundaria 456"
+}

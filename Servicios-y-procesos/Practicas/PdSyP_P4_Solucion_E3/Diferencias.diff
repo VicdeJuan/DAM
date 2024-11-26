@@ -1,0 +1,89 @@
+diff paralelizado/Cliente.java secuencial/Cliente.java
+1c1
+< package paralelizado;
+---
+> package secuencial;
+4d3
+< 	
+64c63
+< 	public synchronized double getSaldo() {
+---
+> 	public double getSaldo() {
+71c70
+< 	public synchronized void setSaldo(double saldo) {
+---
+> 	public void setSaldo(double saldo) {
+109c108
+< 	public synchronized void retirar(double monto) {
+---
+> 	public void retirar(double monto) {
+114c113
+< 	public synchronized void ingresar(double monto) {
+---
+> 	public void ingresar(double monto) {
+diff paralelizado/ListadoTransferencias.java secuencial/ListadoTransferencias.java
+1c1
+< package paralelizado;
+---
+> package secuencial;
+6d5
+< import java.util.concurrent.ConcurrentHashMap;
+36c35
+< 	public void procesarTodas(ConcurrentHashMap<String, Cliente> clientes) {
+---
+> 	public void procesarTodas(HashMap<String, Cliente> clientes) {
+Only in paralelizado/: MainParalelizado.java
+Only in secuencial/: MainSecuencial.java
+diff paralelizado/Producto.java secuencial/Producto.java
+1c1
+< package paralelizado;
+---
+> package secuencial;
+diff paralelizado/Transferencia.java secuencial/Transferencia.java
+1c1
+< package paralelizado;
+---
+> package secuencial;
+4d3
+< import java.util.concurrent.ConcurrentHashMap;
+67c66
+< 	public void procesar(ConcurrentHashMap<String, Cliente> clientes) {
+---
+> 	public void procesar(HashMap<String, Cliente> clientes) {
+71d69
+< 		// CONTROL DE ERRORES
+78,98c76,84
+< 		
+< 		// PARA EVITAR INTERBLOQUEOS EN LA SINCRONIZACIÓN
+< 		Object first,second;
+< 		if (clienteOrigen.hashCode() < clienteDestino.hashCode()) {
+< 			first = clienteOrigen;
+< 			second = clienteDestino;
+< 		} else {
+< 			first = clienteDestino;
+< 			second = clienteOrigen;
+< 		}
+< 		
+< 		synchronized(first) {
+< 			synchronized(second) {
+< 				//if (true) {
+< 				if (clienteOrigen.getSaldo() >= this.monto) {		
+< 					clienteOrigen.retirar(this.monto);
+< 					clienteDestino.ingresar(this.monto);
+< 				}else {
+< 					System.out.println("Saldo insuficiente para procesar "+this);
+< 				}
+< 			}
+---
+> 		if (clienteOrigen.getSaldo() >= this.monto) {
+> 		//if(true) {
+> 			/*System.out.println("Ejecutando transferencia de "+ this.monto +": "+
+> 							clienteOrigen.getId() +" ("+clienteOrigen.getSaldo()+")"+
+> 						"a " + clienteDestino.getId() + " ("+clienteDestino.getSaldo()+")" );*/
+> 			clienteOrigen.retirar(this.monto);
+> 			clienteDestino.ingresar(this.monto);
+> 		}else {
+> 			System.out.println("Saldo insuficiente para procesar "+this);
+100,101d85
+< 		
+< 		

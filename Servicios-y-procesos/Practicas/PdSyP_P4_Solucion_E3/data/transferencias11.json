@@ -1,0 +1,12 @@
+[
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 1000
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente2",
+    "monto": 1500
+  }
+]

@@ -1,0 +1,1227 @@
+[
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 212.1
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente4",
+    "monto": 488.81
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 104.58
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 343.7
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente2",
+    "monto": 208.21
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 311.5
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 243.43
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 439.58
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente4",
+    "monto": 461.29
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 247.35
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 118.94
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 217.67
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 163.78
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 213.46
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 100.75
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 65.02
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 437.26
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente5",
+    "monto": 151.9
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente1",
+    "monto": 216.96
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 89.82
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 477.22
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 144.61
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 108.62
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 69.22
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 279.44
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 352.89
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 315.32
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 142.84
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 468.56
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 211.25
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 156.49
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 386.63
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente2",
+    "monto": 355.16
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 209.65
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 217.01
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente4",
+    "monto": 278.67
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 118.3
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 190.18
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 481.2
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 230.8
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 93.93
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 60.23
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 210.17
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 318.77
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 394.61
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 95.27
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 257.52
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente3",
+    "monto": 130.15
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 131.37
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 440.54
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 484.31
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente1",
+    "monto": 108.39
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 185.23
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 205.93
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 433.62
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 166.08
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente4",
+    "monto": 235.4
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 254.95
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 411.33
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 470.8
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 225.66
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 470.64
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente4",
+    "monto": 332.39
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 182.47
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 422.43
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 379.8
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 164.7
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 361.23
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 401.01
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente5",
+    "monto": 379.08
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente1",
+    "monto": 247.76
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 456.67
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 305.18
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 420.7
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 450.37
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 118.06
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 198.0
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 82.79
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 131.91
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 385.78
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente4",
+    "monto": 123.75
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 448.08
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 78.22
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente1",
+    "monto": 234.16
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 356.82
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente5",
+    "monto": 307.4
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 100.42
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 345.05
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente1",
+    "monto": 168.12
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 425.56
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 152.01
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 306.49
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 405.77
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 379.04
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 182.23
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 424.02
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 463.92
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente1",
+    "monto": 223.51
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 129.39
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 92.44
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 130.54
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente2",
+    "monto": 420.13
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 160.97
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 74.95
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 384.16
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente5",
+    "monto": 434.37
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente4",
+    "monto": 442.06
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 85.46
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente4",
+    "monto": 427.58
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 441.48
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 172.37
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 145.87
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 58.09
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 299.63
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 496.1
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 322.98
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente4",
+    "monto": 458.09
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 485.57
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 300.9
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente2",
+    "monto": 248.34
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 224.2
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente1",
+    "monto": 264.8
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 465.24
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 494.7
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 268.41
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 351.18
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente4",
+    "monto": 120.08
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 459.51
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 211.86
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 459.48
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente4",
+    "monto": 86.45
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 331.96
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 314.88
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 434.13
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 477.79
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 152.25
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 171.24
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 490.37
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente4",
+    "monto": 207.13
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 156.13
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 175.45
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente3",
+    "monto": 227.97
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente5",
+    "monto": 499.17
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 236.04
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 215.99
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 350.52
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente4",
+    "monto": 311.38
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 172.97
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 130.43
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 230.42
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 401.6
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 439.75
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 309.24
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 463.49
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 207.66
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 326.63
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 481.67
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 205.42
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 338.58
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 390.39
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente3",
+    "monto": 124.35
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 187.84
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 279.65
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 364.73
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 137.36
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 134.01
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 60.18
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 388.59
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente3",
+    "monto": 428.33
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 364.75
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 96.31
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 246.73
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente1",
+    "monto": 427.27
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 159.99
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 141.74
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente4",
+    "monto": 435.64
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente2",
+    "monto": 263.23
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 252.61
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 149.75
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente2",
+    "monto": 115.08
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 128.64
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 258.58
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 299.38
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 182.61
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 447.06
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 252.81
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente1",
+    "monto": 97.49
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 455.49
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 283.18
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 217.92
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 104.96
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente4",
+    "monto": 355.77
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente3",
+    "monto": 401.57
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 436.87
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 137.92
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 272.58
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente6",
+    "monto": 141.76
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 472.67
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente5",
+    "monto": 102.22
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 403.95
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 478.13
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 456.63
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 226.9
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 406.6
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 293.34
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente2",
+    "monto": 349.0
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente5",
+    "monto": 319.94
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente1",
+    "monto": 266.19
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente4",
+    "monto": 474.22
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente2",
+    "monto": 443.56
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente2",
+    "monto": 332.11
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 444.69
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente1",
+    "monto": 447.62
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 381.16
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente1",
+    "monto": 496.86
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 274.77
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 486.68
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 248.73
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 173.1
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente2",
+    "monto": 67.47
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente6",
+    "monto": 165.0
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 412.0
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente1",
+    "monto": 306.64
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 217.76
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente2",
+    "monto": 108.81
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente4",
+    "monto": 158.18
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente6",
+    "monto": 120.05
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente5",
+    "monto": 494.02
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 170.83
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 177.38
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente2",
+    "monto": 148.65
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente1",
+    "monto": 289.43
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 447.57
+  },
+  {
+    "origen": "Cliente6",
+    "destino": "Cliente4",
+    "monto": 452.62
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente3",
+    "monto": 245.06
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente4",
+    "monto": 235.23
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente6",
+    "monto": 155.42
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 72.03
+  },
+  {
+    "origen": "Cliente5",
+    "destino": "Cliente3",
+    "monto": 309.64
+  },
+  {
+    "origen": "Cliente1",
+    "destino": "Cliente2",
+    "monto": 101.89
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente2",
+    "monto": 91.05
+  },
+  {
+    "origen": "Cliente3",
+    "destino": "Cliente5",
+    "monto": 445.15
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente3",
+    "monto": 53.69
+  },
+  {
+    "origen": "Cliente2",
+    "destino": "Cliente6",
+    "monto": 165.45
+  },
+  {
+    "origen": "Cliente4",
+    "destino": "Cliente3",
+    "monto": 83.44
+  }
+]
