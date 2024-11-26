@@ -37,7 +37,7 @@ int main(){
 			break;
 		case 7:
 			printf("Hoy es ");
-			printf("domingo");
+			printf("domingo.");
 			break;
 		default: 
 			printf("Número no válido");
