@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* CÓMO FUNCIONAN LOS PUNTEROS CON LOS STRUCTS */
 
@@ -49,6 +50,17 @@ void inicializar(Estudiante * estudiante_a_rellenar, char * nombre, int edad, fl
 
 }
 
+// No es necesario un valor de retorno. 
+// Cumpleanero es un puntero porque va a ser modificado en la función
+void cumpleanios(Estudiante * cumpleanero) {
+	cumpleanero->edad++;
+
+}
+
+
+// Crea una función que cree una cadena de texto con la información del estudiante.
+// (Puedes empezar creando una función que imprima por pantalla la info de un estudiante).
+
 int main(){
 	// Aquí se reserva la memoria para los estudiantes. Los 560 bytes se reservan aquí
 	Estudiante listado[MAX_ESTUDIANTES];
@@ -66,7 +78,7 @@ int main(){
 	printf("¿Cuántos estudiantes desea inicializar? ");
 	scanf("%d",&num_estudiantes);
 
-	for (int i = 0; i < num_estudiante; i++){
+	for (int i = 0; i < num_estudiantes; i++){
 		printf("Introduce la edad: ");
 		scanf("%d",&edad);
 		printf("Introduce la nota: ");
@@ -74,9 +86,22 @@ int main(){
 		printf("Introduce el nombre: ");
 		scanf("%s",nombre);
 
-		//inicializar(listado + i /*dirección memoria estudiante*/ ,nombre,edad,nota);
-		inicializar( &listado[i] /*dirección memoria estudiante*/ ,nombre,edad,nota);
+		inicializar(listado + i /*dirección memoria estudiante*/ ,nombre,edad,nota);
+		//inicializar( &listado[i] /*dirección memoria estudiante*/ ,nombre,edad,nota);
 	}
+	
+	// El estudiante de la primera posición ha cumplido años
+	//printf("Edad antigua de %s: %d\n",listado[0].nombre,listado->edad);
+	printf("Edad antigua de %s: %d\n",listado[0].nombre,listado[0].edad);
+	cumpleanios(&listado[0]/*DIR DE MEMORIA*/ );
+	//cumpleanios(listado);
+	printf("Edad nueva: %d\n",listado[0].edad );
+	// También es válido
+	printf("Edad nueva: %d\n",listado->edad );
+	printf("Edad nueva: %d\n",(*listado).edad );
+	
+
+	//printf("%d",(listado+6)->edad);
 
 	return EXIT_SUCCESS;
 }
