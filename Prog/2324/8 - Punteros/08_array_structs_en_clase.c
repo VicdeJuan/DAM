@@ -82,14 +82,22 @@ char * estudianteToString_warning(const Estudiante * datos){
 	return retval;
 }
 
+
 void estudianteToString(const Estudiante * datos,char * retval){
 
 // snprintf (dónde, cuánto, el qué [lo que harías con un printf])
-	snprintf(retval,sizeof(retval),"El estudiante %s de %d años ha sacado un %f.",	datos->nombre,datos->edad,datos->nota);
+	snprintf(retval, MAX_BUFFER * sizeof(char) /*200 x 4*/ ,"El estudiante %s de %d años ha sacado un %f.",	datos->nombre,datos->edad,datos->nota);
 
 }
 
+void modificarNombreEstudiante(Estudiante * estudiante_a_modificar,char * nuevo_nombre){
 
+	// Esto solo copia las direcciones de memoria, pero no rellena la memoria del estudiante con el nombre nuevo.
+	// estudiante_a_modificar->nombre = nuevo_nombre;
+	
+	strcpy(estudiante_a_modificar->nombre,nuevo_nombre);
+
+}
 
 // Crea una función que cree una cadena de texto con la información del estudiante.
 // (Puedes empezar creando una función que imprima por pantalla la info de un estudiante).
@@ -140,9 +148,18 @@ int main(){
 	/* VAMOS A IMPRIMIR ESTUDIANTES*/
 	imprimirEstudiante(&listado[0]);
 
+	
 	char StringARellenar[MAX_BUFFER];
 	estudianteToString(&listado[0],StringARellenar);
 	printf("%s\n",StringARellenar);
+	//El estudiante ... de ... años ...
+
+	/** RENOMBRAR */
+	char nuevo_nombre[MAX_NOMBRE];
+	printf("Introduce el nuevo nombre: ");
+	scanf("%s",nuevo_nombre);
+	modificarNombreEstudiante(&listado[0],nuevo_nombre);
+	imprimirEstudiante(&listado[0]);
 
 	return EXIT_SUCCESS;
 }
