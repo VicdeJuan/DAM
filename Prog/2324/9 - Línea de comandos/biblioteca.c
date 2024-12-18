@@ -99,10 +99,28 @@ int main(int argc, char ** argv ){
         {39, "The Republic", "Plato", 16.00, ESSAY, 6},
         {40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10}
     }; 
-    printf("Lista de arguemtos:\n");
+
+    printf("Lista de arguemtos (hay %d argumentos):\n",argc);
     for(int i = 0; i<argc; i++){
     	printf("\t Argumento %d: %s\n",i,argv[i]);
     }
+
+    if (argc == 1){
+        // Caso inicial.
+    } else if(argc == 2){
+        // Mostrar o en añadir
+        if (strcmp(argv[1],"mostrar") == 0){
+            // Llamo a la función mostrar todos los libros
+            printf("Llamo a la función mostrar\n");
+        }else if (strcmp(argv[1],"añadir") == 0){
+            printf("Llamo a la función añadir\n");
+        }
+    } else if(argc == 3){
+        // Distinguir mostrar 
+    } else if (argc == 4){
+        // ...
+    }
+
 
 	return EXIT_SUCCESS;
 }
