@@ -1,0 +1,528 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usefonttheme{professionalfonts}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{Virtualización con VMware y Ubuntu}
+\subtitle{Parte 3/4}
+\author{Víctor de Juan}
+\date{\today}
+
+\begin{document}
+
+%----------------------------------
+% Portada
+%----------------------------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%----------------------------------
+% Índice de la Parte 3
+%----------------------------------
+\begin{frame}{Índice - Parte 3/4}
+    \tableofcontents[
+    hideallsubsections]
+\end{frame}
+
+%=====================================================================
+% 11. Instalación de Ubuntu en la Máquina Virtual
+%=====================================================================
+\section{Instalación de Ubuntu en la Máquina Virtual}
+
+%----------------------------------
+\subsection{11.1 Pantalla de Bienvenida: Elegir Idioma y Modo de Instalación}
+\begin{frame}{Pantalla de Bienvenida (I)}
+    \begin{itemize}
+        \item Al iniciar la VM con la ISO de Ubuntu, aparece un menú para:
+        \begin{itemize}
+            \item \textbf{Probar Ubuntu} (modo live) sin instalar.
+            \item \textbf{Instalar Ubuntu} directamente en el disco virtual.
+        \end{itemize}
+        \item Selecciona \textbf{Instalar Ubuntu} para comenzar el proceso de instalación.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pantalla de Bienvenida (II)}
+    \begin{itemize}
+        \item \textbf{Idioma}: Elige el idioma para el instalador y la futura configuración del sistema.
+        \item \textbf{Teclado}: Se puede cambiar aquí o más adelante. Verifica si usas teclados en español (España o Latinoamérica).
+        \item \textbf{Opciones de accesibilidad}: Voz, alto contraste, teclas lentas, etc., disponibles desde el inicio.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{11.2 Configuración del Teclado y la Red}
+\begin{frame}{Configuración del Teclado}
+    \begin{itemize}
+        \item Antes de empezar la instalación, Ubuntu pide confirmar la \textbf{distribución de teclado}.
+        \item Puedes probar las teclas en el cuadro de texto para evitar errores posteriores.
+        \item Ejemplo: \textit{Español (España)}, \textit{Español (Latinoamérica)}, \textit{Inglés (US)}, etc.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Configuración de la Red}
+    \begin{itemize}
+        \item En algunas versiones, se pide configurar la red \textbf{(Wi-Fi, Ethernet o proxy)}.
+        \item En una VM, la conexión suele estar vía NAT/Bridged, así que el instalador por lo general ya tiene acceso a la red.
+        \item Si no hay DHCP, se puede configurar IP estática manualmente (en versiones server).
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{11.3 Instalación Normal vs Instalación Mínima}
+\begin{frame}{Instalación Normal}
+    \begin{itemize}
+        \item Incluye escritorio completo (GNOME o el flavor elegido), navegador, aplicaciones básicas (LibreOffice, etc.).
+        \item \textbf{Ideal} para usuarios de escritorio o laboratorios de ofimática.
+        \item Tamaño mayor en disco y más paquetes instalados.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Instalación Mínima}
+    \begin{itemize}
+        \item Instala \textbf{menos software} por defecto: Navegador y utilidades esenciales.
+        \item \textbf{Recomendado} si se desea un entorno más ligero o si piensas instalar solo los paquetes necesarios.
+        \item Ahorra espacio en disco y reduce el tiempo de instalación.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{11.4 Descargar Actualizaciones Durante la Instalación}
+\begin{frame}{Descargar Actualizaciones Durante la Instalación}
+    \begin{itemize}
+        \item Puedes marcar la casilla para \textbf{descargar e instalar actualizaciones} en el proceso de instalación.
+        \item \textbf{Ventaja}: El sistema estará actualizado inmediatamente tras el primer arranque.
+        \item \textbf{Desventaja}: Requiere buena conexión a internet y aumenta el tiempo de instalación.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{11.5 Tipos de Instalación (Automática vs Manual)}
+\begin{frame}{Instalación Automática}
+    \begin{itemize}
+        \item El instalador gestiona el particionado y el \textbf{layout de disco}.
+        \item Opción típica: “Borrar disco e instalar Ubuntu” (en la VM, el “disco” es virtual).
+        \item Crea particiones automáticamente (a menudo / y swap, o / y un archivo swap en versiones recientes).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Instalación Manual}
+    \begin{itemize}
+        \item Permite \textbf{personalizar particiones}, sistemas de archivos y puntos de montaje.
+        \item Recomendado en entornos de producción, donde quizás quieras particionar /home, /boot/efi, etc.
+        \item Mayor control, pero exige conocimiento de particiones y del proceso de arranque.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 12. Particionamiento en Profundidad
+%=====================================================================
+\section{Particionamiento en Profundidad}
+
+%----------------------------------
+\subsection{12.1 Particiones Recomendadas en Linux}
+\begin{frame}{Particiones Recomendadas (I)}
+    \begin{itemize}
+        \item \textbf{/ (Root)}: Donde se instalan los archivos principales del SO.
+        \begin{itemize}
+            \item Tamaño sugerido: 15-20 GB mínimo para un entorno desktop, más si se instalan muchos programas.
+        \end{itemize}
+        \item \textbf{/home}: Directorio de los usuarios, opcional separarlo para resguardar datos en reinstalaciones.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Particiones Recomendadas (II)}
+    \begin{itemize}
+        \item \textbf{swap}: Espacio en disco usado como “memoria virtual” cuando se agota la RAM.
+            \begin{itemize}
+                \item Regla general: ~ la misma cantidad que la RAM si se pretende hibernar; de lo contrario, con 2-4 GB puede bastar.
+            \end{itemize}
+        \item \textbf{/boot/efi (UEFI)}: En sistemas UEFI, aquí se almacenan los archivos de arranque. Suele ser FAT32 con ~100-300 MB.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{12.2 Particionamiento Automático (Ubiquity)}
+\begin{frame}{12.2 Particionamiento Automático}
+    \begin{itemize}
+        \item \textbf{Ubiquity} (instalador estándar de Ubuntu Desktop) ofrece una opción de “Borrar disco e instalar Ubuntu” que crea las particiones por defecto.
+        \item En Ubuntu Server, el instalador también ofrece un modo automático de particionado.
+        \item \textbf{Ventaja}: Sencillez y rapidez.
+        \item \textbf{Desventaja}: Menos flexibilidad en la distribución del espacio.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{12.3 Particionamiento Manual}
+\begin{frame}{Particionamiento Manual (I)}
+    \begin{itemize}
+        \item El usuario define cada partición: tamaño, tipo, sistema de archivos, punto de montaje.
+        \item \textbf{MBR} vs \textbf{GPT} (depende del firmware seleccionado en la VM).
+        \item Creación de particiones primarias, extendidas y lógicas (si usas MBR).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Particionamiento Manual (II)}
+    \textbf{Selección de sistemas de archivos:}
+    \begin{itemize}
+        \item \textbf{ext4}: Predeterminado en Ubuntu, estable y maduro.
+        \item \textbf{xfs}: Uso frecuente en servidores, excelente en grandes volúmenes de datos.
+        \item \textbf{btrfs}: Funciones avanzadas (snapshot, subvolúmenes), pero menos usado por defecto en Ubuntu.
+    \end{itemize}
+    \vspace{0.2cm}
+    \textbf{Opciones avanzadas}:
+    \begin{itemize}
+        \item \textbf{LVM} (Logical Volume Manager): Facilita redimensionar o crear volúmenes lógicos en caliente.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{12.4 Instalación del Gestor de Arranque (GRUB)}
+\begin{frame}{GRUB en BIOS y UEFI (I)}
+    \begin{itemize}
+        \item \textbf{GRUB}: Programa que gestiona el inicio del sistema operativo.
+        \item En \textbf{modo BIOS} (MBR), GRUB se instala en el MBR (primer sector del disco).
+        \item En \textbf{modo UEFI}, GRUB se instala en la EFI System Partition (ESP) y se registra en la NVRAM.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{GRUB en BIOS y UEFI (II)}
+    \begin{itemize}
+        \item Durante la instalación, Ubuntu detecta si estás en modo \textbf{Legacy BIOS} o \textbf{UEFI} y ubica GRUB según corresponda.
+        \item Si hay más de un SO, GRUB añade un menú para elegir el sistema a arrancar (dual-boot).
+        \item \textbf{Verificación:} Tras reiniciar, el sistema debe arrancar Ubuntu directamente. Si no, revisar la configuración de firmware o el orden de arranque.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 13. Primer Inicio de Ubuntu
+%=====================================================================
+\section{Primer Inicio de Ubuntu}
+
+%----------------------------------
+\subsection{13.1 Configuración Inicial (Usuarios, Idioma, Zona Horaria)}
+\begin{frame}{Configuración Inicial (I)}
+    \begin{itemize}
+        \item Tras la instalación, al primer arranque se crea/valida el \textbf{usuario principal}.
+        \item Escoge \textbf{contraseña} y nombre de la cuenta (cuenta con permisos de sudo en entornos desktop).
+        \item \textbf{Zona horaria}: Se configura automáticamente por geolocalización (si está habilitada) o se selecciona manualmente.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Configuración Inicial (II)}
+    \begin{itemize}
+        \item \textbf{Opciones de privacidad}: Ubuntu puede consultar si deseas enviar estadísticas de uso (opcional).
+        \item \textbf{Configuración regional}: Idioma del sistema, formatos de fecha y número, teclado.
+        \item \textbf{Aplicaciones iniciales}: Se muestran sugerencias de software o se puede saltar este paso.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{13.2 Actualización de Paquetes (apt update, apt upgrade)}
+\begin{frame}{Actualización de Paquetes}
+    \begin{itemize}
+        \item Abre la \textbf{terminal} (Ctrl+Alt+T) y ejecuta:
+        \begin{itemize}
+            \item \texttt{sudo apt update} (actualiza la lista de paquetes)
+            \item \texttt{sudo apt upgrade} (descarga e instala actualizaciones disponibles)
+        \end{itemize}
+        \item Mantener el sistema al día mejora la seguridad y la estabilidad.
+        \item \textbf{Opcional}: Usar \texttt{sudo apt dist-upgrade} para recibir cambios más profundos de dependencias.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 14. Instalación y Configuración de VMware Tools (open-vm-tools)
+%=====================================================================
+\section{Instalación y Configuración de VMware Tools}
+
+%----------------------------------
+\subsection{14.1 open-vm-tools vs VMware Tools propietario}
+\begin{frame}{14.1 Diferencias Principales}
+    \begin{itemize}
+        \item \textbf{open-vm-tools}: Versión de código abierto integrada en los repositorios de la mayoría de distribuciones Linux.
+            \begin{itemize}
+                \item Mejor integración en el sistema de paquetes (apt en Ubuntu).
+                \item Recibe actualizaciones de la comunidad y de VMware.
+            \end{itemize}
+        \item \textbf{VMware Tools propietario}: Instalable manualmente desde la ISO que trae VMware.
+            \begin{itemize}
+                \item A veces incluye algunas funciones extra o soporte específico.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{14.2 Ventajas (mejoras gráficas, sincronización de hora, drag \& drop)}
+\begin{frame}{14.2 Ventajas de las VMware Tools}
+    \begin{itemize}
+        \item \textbf{Mejoras gráficas}: Resolución dinámica, soporte de mouse integrado (no necesidad de “capturar” cursor).
+        \item \textbf{Sincronización horaria}: La VM ajusta su reloj con el host para evitar desfases.
+        \item \textbf{Carpetas compartidas}: Posibilidad de compartir una carpeta del host con la VM.
+        \item \textbf{Portapapeles compartido y drag \& drop}: Copiar y pegar entre host e invitado.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{14.3 Instalación paso a paso}
+\begin{frame}{14.3 Instalación de open-vm-tools}
+    \begin{itemize}
+        \item \textbf{Ubuntu Desktop}:
+        \begin{itemize}
+            \item \texttt{sudo apt update}
+            \item \texttt{sudo apt install open-vm-tools open-vm-tools-desktop}
+        \end{itemize}
+        \item \textbf{Ubuntu Server} (sin entorno gráfico):
+        \begin{itemize}
+            \item \texttt{sudo apt update}
+            \item \texttt{sudo apt install open-vm-tools}
+        \end{itemize}
+        \item Reiniciar la VM o iniciar el servicio para que surta efecto.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{14.4 Troubleshooting común (pantalla, drivers, etc.)}
+\begin{frame}{14.4 Problemas frecuentes}
+    \begin{itemize}
+        \item \textbf{Resolución de pantalla} no cambia:
+            \begin{itemize}
+                \item Verificar instalación de \texttt{open-vm-tools-desktop}, ya que incluye los drivers gráficos.
+            \end{itemize}
+        \item \textbf{Integración de ratón} no funciona:
+            \begin{itemize}
+                \item Asegurarse de no tener otro driver de virtualización en conflicto (ej. spice-vdagent, virtualbox-guest-utils, etc.).
+            \end{itemize}
+        \item \textbf{Sin carpetas compartidas}:
+            \begin{itemize}
+                \item Comprobar que la función de “Shared Folders” esté activada en la configuración de la VM (solo en Workstation Pro).
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 15. Configuraciones Avanzadas en VMware
+%=====================================================================
+\section{Configuraciones Avanzadas en VMware}
+
+%----------------------------------
+\subsection{15.1 Redes Virtuales Avanzadas}
+\begin{frame}{vmnet0, vmnet1, vmnet8 y redes personalizadas}
+    \begin{itemize}
+        \item \textbf{vmnet0 (Bridged)}: Conecta la VM directamente a la misma red que el host físico.
+        \item \textbf{vmnet1 (Host-Only)}: Red interna entre el host y las VMs, sin acceso a internet.
+        \item \textbf{vmnet8 (NAT)}: El host actúa como un router NAT, compartiendo su conexión con la VM.
+        \item \textbf{Redes personalizadas}: En Workstation Pro, se pueden crear redes extra con rangos específicos, DHCP configurado, etc.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{VLAN Trunking y NAT Port Forwarding}
+    \begin{itemize}
+        \item \textbf{VLAN Trunking}: Posible en versiones Pro, para pasar etiquetas VLAN desde el host a la VM.
+        \item \textbf{NAT Port Forwarding}: Reenvío de puertos desde el host a la VM (por ejemplo, mapear host:8022 -> VM:22 para SSH).
+        \item Se configuran en el \textbf{Virtual Network Editor}, parte de VMware Workstation Pro.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{15.2 Snapshots y Clones}
+\begin{frame}{Snapshots}
+    \begin{itemize}
+        \item \textbf{Snapshot}: Captura del estado de la VM en un momento dado (sistema de archivos, memoria, configuración).
+        \item Permite \textbf{restaurar} la VM a ese punto exacto.
+        \item \textbf{Consejo}: Crear un snapshot antes de realizar cambios de sistema relevantes o actualizaciones arriesgadas.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Clones}
+    \begin{itemize}
+        \item \textbf{Clonado de VMs}:
+            \begin{itemize}
+                \item \textbf{Full Clone}: Copia completa e independiente de la VM original.
+                \item \textbf{Linked Clone}: Comparte los discos base; ocupa menos espacio, pero depende de la VM “padre”.
+            \end{itemize}
+        \item \textbf{Uso común}: Crear plantillas y desplegar múltiples VMs rápidamente con diferentes propósitos.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{15.3 Cifrado de Máquinas Virtuales}
+\begin{frame}{15.3 Cifrado en VMware}
+    \begin{itemize}
+        \item Disponible en \textbf{VMware Workstation Pro}.
+        \item Cifra los archivos de la VM (discos virtuales, configuración), protegiendo contra acceso no autorizado.
+        \item \textbf{Limitaciones}:
+            \begin{itemize}
+                \item Aumenta el consumo de CPU durante el cifrado/descifrado.
+                \item Se necesita una contraseña o clave para iniciar la VM.
+                \item Copias de seguridad pueden requerir la misma clave para restaurar.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{15.4 GPU Passthrough (paso directo de GPU al invitado)}
+\begin{frame}{15.4 GPU Passthrough}
+    \begin{itemize}
+        \item \textbf{Requisitos}:
+            \begin{itemize}
+                \item Soporte de \textbf{IOMMU} en la placa base y CPU (Intel VT-d / AMD-Vi).
+                \item Firmware UEFI que permita asignar dispositivos PCIe a la VM.
+            \end{itemize}
+        \item \textbf{Limitaciones en hypervisores tipo 2}: No siempre está totalmente soportado, más común en ESXi o Proxmox.
+        \item \textbf{Uso real}: Permite a la VM usar la GPU con controladores nativos (aplicaciones 3D, machine learning, etc.).
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{15.5 Configuración de Disco}
+\begin{frame}{Thin vs Thick, archivos partidos o en uno solo}
+    \begin{itemize}
+        \item \textbf{Thin Provision}: Crece dinámicamente, más eficiente al inicio.
+        \item \textbf{Thick Provision}: Reserva todo el espacio de disco desde el principio, predecible en rendimiento.
+        \item \textbf{Split disk} vs \textbf{single file}:
+            \begin{itemize}
+                \item \textbf{Split disk}: Útil en sistemas de archivos que no manejan bien ficheros muy grandes, o para facilitar backups parciales.
+                \item \textbf{Single file}: Un solo \texttt{.vmdk}, más simple de gestionar, pero puede ser grande.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{15.6 Hardware Version (virtual hardware compatibility)}
+\begin{frame}{Hardware Version en VMware}
+    \begin{itemize}
+        \item \textbf{Hardware Version} define las características que la VM puede usar (ej. USB 3.1, NVMe, etc.).
+        \item \textbf{v16, v17, etc.} según la versión de VMware.
+        \item Se puede \textbf{downgradear} para compatibilidad con versiones anteriores de Workstation o ESXi, perdiendo funciones recientes.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 16. Resolución de Problemas Frecuentes
+%=====================================================================
+\section{Resolución de Problemas Frecuentes}
+
+%----------------------------------
+\subsection{16.1 La VM no arranca (VT-x / AMD-V deshabilitado)}
+\begin{frame}{VT-x / AMD-V deshabilitado}
+    \begin{itemize}
+        \item Revisar \textbf{BIOS/UEFI} para habilitar virtualización (“Intel VT-x”, “SVM” o similares).
+        \item A veces, otra tecnología (Hyper-V en Windows) bloquea el acceso a VT-x.
+        \item Mensajes típicos: “\textit{This host supports Intel VT-x, but it is disabled}” o “\textit{VMX/AMD-V not enabled}”.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.2 No se detecta la ISO}
+\begin{frame}{No se detecta la ISO}
+    \begin{itemize}
+        \item Asegurarse de haber seleccionado el \textbf{archivo ISO} correcto en la configuración de la unidad de CD/DVD.
+        \item Verificar que la opción \textbf{“Connect at power on”} esté marcada.
+        \item Si la ISO está corrupta, la VM puede no arrancar. Revisa \textbf{checksums}.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.3 Red no disponible o ping no funciona}
+\begin{frame}{Problemas de Red}
+    \begin{itemize}
+        \item Modo NAT: ¿Está el firewall del host bloqueando tráfico?
+        \item Modo Bridged: Verificar que la red del host permita direcciones DHCP. A veces, hay que desactivar Wi-Fi bridging en Windows.
+        \item \textbf{Host-Only}: No hay salida a Internet, solo comunicación con el host; confirmarlo si necesitas conectarte a la LAN o WAN.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.4 Pantalla pequeña o sin aceleración 3D}
+\begin{frame}{Problemas Gráficos}
+    \begin{itemize}
+        \item Instalar \textbf{open-vm-tools-desktop} para habilitar la integración gráfica en Ubuntu Desktop.
+        \item Revisa la configuración de video en la VM. Aumentar la memoria de video si es muy baja.
+        \item Aceleración 3D requiere una GPU en el host y los drivers correctos. Si no está soportado, se usará renderizado por software.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.5 GRUB no se instala o no se ve}
+\begin{frame}{Problemas con GRUB}
+    \begin{itemize}
+        \item Modo UEFI: ¿La partición EFI está creada y montada en \texttt{/boot/efi}?
+        \item Modo BIOS: ¿Se seleccionó el disco correcto para instalar el cargador (ej. /dev/sda)?
+        \item A veces puede ser necesario \textbf{reparar GRUB} con un disco live o usar la herramienta “Boot-Repair”.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.6 Problemas con Secure Boot}
+\begin{frame}{Secure Boot}
+    \begin{itemize}
+        \item En Ubuntu con Secure Boot activo, los módulos de VMware (vmmon, vmnet) podrían requerir \textbf{firma digital}.
+        \item Se puede firmar manualmente o \textbf{deshabilitar Secure Boot} temporalmente en la UEFI.
+        \item Mensajes típicos: “\textit{Sign these kernel modules before using them in a Secure Boot environment}”.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.7 El ratón o teclado no responde (captura de entrada)}
+\begin{frame}{Problemas de Ratón/Teclado}
+    \begin{itemize}
+        \item VMware “captura” el ratón/teclado cuando clicas dentro de la ventana de la VM.
+        \item Salir con Ctrl+Alt para liberar el puntero.
+        \item Si no responde, revisar \textbf{VMware Tools} instalados, o que no haya conflictos con otros drivers.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{16.8 Uso excesivo de CPU o RAM}
+\begin{frame}{Optimización de Recursos}
+    \begin{itemize}
+        \item Revisa cuántos núcleos y cuánta RAM asignaste a la VM. ¿Estás sobreasignando?
+        \item Uso excesivo de CPU puede indicar procesos dentro de la VM que consumen muchos recursos.
+        \item Monitorea con herramientas en el host (\texttt{top}, \texttt{htop} en Linux) y en la VM, ajusta según sea necesario.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 17. Glosario Extendido de Siglas y Términos
+%=====================================================================
+\section{Glosario Extendido de Siglas y Términos}
+
+\begin{frame}{Glosario Extendido (I)}
+    \begin{description}
+        \item[BIOS] Basic Input/Output System
+        \item[UEFI] Unified Extensible Firmware Interface
+        \item[CSM] Compatibility Support Module (modo de compatibilidad BIOS en UEFI)
+        \item[MBR] Master Boot Record
+        \item[GPT] GUID Partition Table
+    \end{description}
+\end{frame}
+
+\begin{frame}{Glosario Extendido (II)}
+    \begin{description}
+        \item[LVM] Logical Volume Manager
+        \item[NVRAM] Non-Volatile Random-Access Memory (usada por UEFI para almacenar variables)
+        \item[IOMMU] Input–Output Memory Management Unit (para passthrough de dispositivos)
+        \item[VT-x/VT-d] Intel Virtualization Technology (para CPU y dispositivos)
+        \item[AMD-V / AMD-Vi] Tecnologías equivalentes en AMD
+    \end{description}
+\end{frame}
+
+\begin{frame}{Glosario Extendido (III)}
+    \begin{description}
+        \item[Host] Sistema operativo principal donde corre el hypervisor.
+        \item[Guest] Sistema operativo invitado, corriendo dentro de la VM.
+        \item[Snapshot] Captura del estado actual de la VM.
+        \item[Passthrough] Asignar un dispositivo físico directamente a la VM.
+        \item[ISO] Imagen de disco óptico (CD/DVD) utilizada para instalaciones.
+    \end{description}
+\end{frame}
+
+
+
+\end{document}

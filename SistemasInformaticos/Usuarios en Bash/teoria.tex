@@ -1,0 +1,366 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+
+
+\usetheme{Madrid} % Puedes cambiar el tema según prefieras
+
+\title{Gestión de Usuarios, Grupos y Permisos en Ubuntu}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+
+%-------------------- PORTADA --------------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%-------------------- ÍNDICE ---------------------
+\begin{frame}{Contenido}
+    \tableofcontents
+\end{frame}
+
+%=================================================
+\section{Usuarios en Ubuntu}
+%=================================================
+
+%-------------------- Slide 1 --------------------
+\begin{frame}{Conceptos Básicos}
+    \begin{itemize}
+        \item Cada usuario en Ubuntu tiene un \textbf{UID} (identificador único) y pertenece a uno o varios grupos.
+        \item Los permisos de archivos y procesos dependen del usuario y de su(s) grupo(s).
+    \end{itemize}
+\end{frame}
+
+%-------------------- Slide 2 --------------------
+\begin{frame}{Comandos Básicos para la Gestión de Usuarios}
+    \begin{center}
+    \begin{tabular}{l l}
+    \hline
+    \textbf{Comando} & \textbf{Descripción} \\
+    \hline
+    whoami & Muestra el usuario actual \\
+    who & Lista los usuarios conectados \\
+    id & Muestra UID, GID y grupos del usuario \\
+    adduser <usuario> & Crea un nuevo usuario (con home) \\
+    userdel -r <usuario> & Elimina un usuario y su home \\
+    passwd <usuario> & Cambia la contraseña de un usuario \\
+    su <usuario> & Cambia al usuario especificado \\
+    sudo <comando> & Ejecuta un comando como superusuario \\
+    usermod -l <nuevo> <antiguo> & Cambia el nombre de un usuario \\
+    \hline
+    \end{tabular}
+    \end{center}
+\end{frame}
+
+%-------------------- Slide 3 --------------------
+\begin{frame}{Crear y Cambiar de Usuario}
+    \textbf{Crear un usuario:}
+    \begin{lstlisting}
+sudo adduser juan
+    \end{lstlisting}
+    \textbf{Cambiar a otro usuario:}
+    \begin{lstlisting}
+su juan
+exit
+    \end{lstlisting}
+\end{frame}
+
+%=================================================
+\section{Grupos en Ubuntu}
+%=================================================
+
+%-------------------- Slide 4 --------------------
+\begin{frame}{Conceptos Básicos de Grupos}
+    \begin{itemize}
+        \item Un \textbf{grupo} en Ubuntu es un conjunto de usuarios con permisos compartidos.
+        \item Útil para administrar accesos a archivos y directorios de forma colectiva.
+    \end{itemize}
+\end{frame}
+
+%-------------------- Slide 5 --------------------
+\begin{frame}{Comandos para Gestionar Grupos}
+    \begin{center}
+    \begin{tabular}{l l}
+    \hline
+    \textbf{Comando} & \textbf{Descripción} \\
+    \hline
+    groups <usuario> & Lista los grupos de un usuario \\
+    groupadd <grupo> & Crea un nuevo grupo \\
+    groupdel <grupo> & Elimina un grupo \\
+    usermod -aG <grupo> <usuario> & Añade un usuario a un grupo \\
+    gpasswd -d <usuario> <grupo> & Elimina un usuario de un grupo \\
+    \hline
+    \end{tabular}
+    \end{center}
+\end{frame}
+
+%-------------------- Slide 6 --------------------
+
+\begin{frame}[fragile]{Crear y Modificar Grupos}
+    \textbf{Crear un grupo:}
+    \begin{lstlisting}
+sudo groupadd desarrolladores
+    \end{lstlisting}
+    \textbf{Agregar un usuario a un grupo:}
+    \begin{lstlisting}
+    sudo usermod -aG desarrolladores juan
+    \end{lstlisting}
+    \textbf{Eliminar un usuario de un grupo:}
+    \begin{lstlisting}
+sudo gpasswd -d juan desarrolladores
+    \end{lstlisting}
+\end{frame}
+
+%=================================================
+\section{Permisos en Ubuntu}
+%=================================================
+
+%-------------------- Slide 7 --------------------
+\begin{frame}{Tipos de Permisos}
+    \begin{itemize}
+        \item \textbf{r (read)} = 4
+        \item \textbf{w (write)} = 2
+        \item \textbf{x (execute)} = 1
+    \end{itemize}
+    \vspace{0.3cm}
+    Se aplican a:
+    \begin{enumerate}
+        \item \textbf{Usuario (Owner)}
+        \item \textbf{Grupo (Group)}
+        \item \textbf{Otros (Others)}
+    \end{enumerate}
+\end{frame}
+
+%-------------------- Slide 8 --------------------
+\begin{frame}{Ver Permisos de un Archivo}
+    \begin{lstlisting}
+ls -l archivo.txt
+    \end{lstlisting}
+    \begin{itemize}
+        \item Ejemplo de salida: \texttt{-rw-r--r-- 1 juan desarrolladores ...}
+        \item \textbf{Dueño:} juan
+        \item \textbf{Grupo:} desarrolladores
+        \item \textbf{Permisos:} Usuario = rw, Grupo = r, Otros = r
+    \end{itemize}
+\end{frame}
+
+%=================================================
+\section{Cambiar Permisos y Propietarios}
+%=================================================
+
+%-------------------- Slide 9 --------------------
+\begin{frame}[fragile]{Cambiar Permisos con \texttt{chmod}}
+    \textbf{Modo simbólico:}
+    \begin{lstlisting}
+chmod u+x script.sh    % Dar permiso de ejecución al usuario
+chmod g-w archivo.txt  % Quitar permiso de escritura al grupo
+    \end{lstlisting}
+    \vspace{0.3cm}
+    \textbf{Modo octal:}
+    \begin{itemize}
+        \item 7 (rwx), 6 (rw-), 5 (r-x), 4 (r--)
+    \end{itemize}
+    \begin{lstlisting}
+chmod 755 script.sh
+    \end{lstlisting}
+\end{frame}
+
+%-------------------- Slide 10 --------------------
+\begin{frame}{Cambiar Propietario y Grupo}
+    \textbf{Cambiar propietario (\texttt{chown}):}
+    \begin{lstlisting}
+sudo chown juan archivo.txt
+sudo chown juan:desarrolladores archivo.txt
+    \end{lstlisting}
+    \vspace{0.3cm}
+    \textbf{Cambiar grupo (\texttt{chgrp}):}
+    \begin{lstlisting}
+sudo chgrp desarrolladores archivo.txt
+    \end{lstlisting}
+\end{frame}
+
+%=================================================
+\section{Permisos Especiales}
+%=================================================
+
+%-------------------- Slide 11 --------------------
+\begin{frame}{Sticky Bit (t)}
+    \begin{itemize}
+        \item Evita que otros usuarios borren archivos en directorios públicos.
+        \item Comando:
+        \begin{lstlisting}
+chmod +t /directorio
+        \end{lstlisting}
+        \item Ejemplo: \texttt{/tmp} tiene este permiso por defecto.
+    \end{itemize}
+\end{frame}
+
+%-------------------- Slide 12 --------------------
+\begin{frame}{SetUID (s) y SetGID (s)}
+    \textbf{SetUID (\texttt{u+s}):}
+    \begin{itemize}
+        \item Ejecuta un programa con los permisos de su propietario.
+        \item \texttt{chmod u+s programa}
+    \end{itemize}
+    \vspace{0.3cm}
+    \textbf{SetGID (\texttt{g+s}):}
+    \begin{itemize}
+        \item Los archivos creados heredan el grupo del directorio.
+        \item \texttt{chmod g+s /directorio}
+    \end{itemize}
+\end{frame}
+
+%=================================================
+\section{Ejemplos Reales}
+%=================================================
+
+%-------------------- Slide 13 --------------------
+\begin{frame}[fragile]{Administración de un Servidor Web}
+    \begin{enumerate}
+        \item Crear grupo \texttt{webdev}:
+        \begin{lstlisting}
+sudo groupadd webdev
+        \end{lstlisting}
+        \item Agregar usuarios al grupo:
+        \begin{lstlisting}
+sudo usermod -aG webdev juan
+        \end{lstlisting}
+        \item Asignar grupo y permisos en /var/www/html/:
+        \begin{lstlisting}
+sudo chown -R root:webdev /var/www/html/
+sudo chmod -R 775 /var/www/html/
+        \end{lstlisting}
+    \end{enumerate}
+\end{frame}
+
+%-------------------- Slide 14 --------------------
+\begin{frame}{Directorio Compartido}
+    \begin{enumerate}
+        \item Crear grupo \texttt{compartidos}:
+        \begin{lstlisting}
+sudo groupadd compartidos
+        \end{lstlisting}
+        \item Agregar usuarios al grupo:
+        \begin{lstlisting}
+sudo usermod -aG compartidos ana
+        \end{lstlisting}
+        \item Crear directorio y asignar permisos:
+        \begin{lstlisting}
+sudo mkdir /home/compartido
+sudo chown -R root:compartidos /home/compartido
+sudo chmod -R 770 /home/compartido
+        \end{lstlisting}
+    \end{enumerate}
+\end{frame}
+
+%=================================================
+\section{Ejercicios Prácticos}
+%=================================================
+
+%-------------------- Slide 15 --------------------
+\begin{frame}{Ejercicio 1: Creación de un Usuario}
+    \textbf{Objetivo:} Crear un usuario \texttt{prueba1} y verificarlo.
+    \begin{enumerate}
+        \item \texttt{sudo adduser prueba1}
+        \item Comprobar: \texttt{id prueba1}
+    \end{enumerate}
+    \textbf{Resultado esperado:} \texttt{uid=1001(prueba1) gid=1001(prueba1) ...}
+\end{frame}
+
+%-------------------- Slide 16 --------------------
+\begin{frame}{Ejercicio 2: Creación de un Grupo y Asignación de Usuario}
+    \begin{enumerate}
+        \item \texttt{sudo groupadd practica}
+        \item \texttt{sudo usermod -aG practica prueba1}
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{groups prueba1} \\
+    \textbf{Esperado:} \texttt{prueba1 : prueba1 practica}
+\end{frame}
+
+%-------------------- Slide 17 --------------------
+\begin{frame}{Ejercicio 3: Cambio de Propietario de un Archivo}
+    \begin{enumerate}
+        \item Crear \texttt{ejemplo.txt} en tu \textbf{home}.
+        \item Cambiar propietario a \texttt{prueba1}.
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{ls -l ejemplo.txt} \\
+    \textbf{Esperado:} \texttt{-rw-r--r-- 1 prueba1 usuario ... ejemplo.txt}
+\end{frame}
+
+%-------------------- Slide 18 --------------------
+\begin{frame}{Ejercicio 4: Cambiar Permisos de un Archivo}
+    \begin{enumerate}
+        \item Crear \texttt{script.sh}.
+        \item Dar permisos de ejecución a todos (\texttt{chmod 755 script.sh}).
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{ls -l script.sh} \\
+    \textbf{Esperado:} \texttt{-rwxr-xr-x ... script.sh}
+\end{frame}
+
+%-------------------- Slide 19 --------------------
+\begin{frame}{Ejercicio 5: Directorio Compartido con Grupo}
+    \begin{enumerate}
+        \item \texttt{sudo groupadd equipo1}
+        \item Crear \texttt{usuario2} y añadirlo a \texttt{equipo1}.
+        \item Directorio \texttt{/home/compartido/} con grupo \texttt{equipo1}.
+        \item \texttt{chmod -R 770 /home/compartido/}
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{ls -ld /home/compartido/} \\
+    \textbf{Esperado:} \texttt{drwxrwx--- ... root equipo1 ...}
+\end{frame}
+
+%-------------------- Slide 20 --------------------
+\begin{frame}{Ejercicio 6: Configurar el Sticky Bit}
+    \begin{enumerate}
+        \item Crear \texttt{/home/publico/} con permisos de escritura para todos.
+        \item Activar Sticky Bit: \texttt{chmod +t /home/publico/}
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{ls -ld /home/publico/} \\
+    \textbf{Esperado:} \texttt{drwxrwxrwt 2 root root ... /home/publico/}
+\end{frame}
+
+%-------------------- Slide 21 --------------------
+\begin{frame}{Ejercicio 7: Usuario con Shell Restringido}
+    \begin{enumerate}
+        \item Crear \texttt{limitado} con shell \texttt{/bin/rbash}.
+        \item Probar \texttt{cd /} y ver error.
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{rbash: cd: restricted}
+\end{frame}
+
+%-------------------- Slide 22 --------------------
+\begin{frame}{Ejercicio 8: Asignar Permisos con SetGID}
+    \begin{enumerate}
+        \item \texttt{sudo groupadd proyectos}
+        \item Crear \texttt{/home/proyectos/} y asignar grupo.
+        \item \texttt{chmod g+s /home/proyectos/}
+    \end{enumerate}
+    \textbf{Comprobación:} \texttt{ls -ld /home/proyectos/} \\
+    \textbf{Esperado:} \texttt{drwxrws--- ... root proyectos ...}
+\end{frame}
+
+%=================================================
+\section{Conclusiones}
+%=================================================
+
+%-------------------- Slide 23 --------------------
+\begin{frame}{Conclusión}
+    \begin{block}{Resumen}
+    \begin{itemize}
+        \item Administrar usuarios, grupos y permisos es esencial para la seguridad y eficiencia en Ubuntu.
+        \item Comprender los \textbf{permisos (r, w, x)}, la asignación de propietarios y grupos permite un control preciso.
+        \item Los ejercicios propuestos te ayudan a practicar y verificar tu aprendizaje de forma directa.
+    \end{itemize}
+    \end{block}
+    \vspace{0.5cm}
+    \centering
+    \alert{¡Si tus resultados no coinciden con los esperados, revisa y repite los pasos!}
+\end{frame}
+
+%-------------------- FIN --------------------
+\end{document}

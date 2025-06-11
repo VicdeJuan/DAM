@@ -1,0 +1,384 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usefonttheme{professionalfonts}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{Virtualización de Sistemas Operativos}
+\subtitle{Parte 1/4}
+\author{Víctor de Juan}
+\date{\today}
+
+\begin{document}
+
+%----------------------------------
+% Portada
+%----------------------------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%----------------------------------
+% Índice de la Presentación
+%----------------------------------
+\begin{frame}{Índice - Parte 1}
+    \tableofcontents[
+    hideallsubsections]
+\end{frame}
+
+%=====================================================================
+% 1. Conceptos Fundamentales de Virtualización
+%=====================================================================
+\section{Conceptos Fundamentales de Virtualización}
+
+%----------------------------------
+\subsection{Definición de Virtualización}
+\begin{frame}{1.1 Definición de Virtualización (I)}
+    \begin{itemize}
+        \item \textbf{Virtualización:} Proceso de crear una representación virtual de un recurso físico, como un servidor, sistema operativo, dispositivo de almacenamiento o red.
+        \item \textbf{Objetivo principal:} Separar el software del hardware subyacente.
+        \item \textbf{¿Para qué?} Permite ejecutar múltiples sistemas operativos en la misma máquina física de forma simultánea.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{1.1 Definición de Virtualización (II)}
+    \begin{itemize}
+        \item Cada entorno virtual se denomina \textbf{Máquina Virtual} (VM).  
+        \item El sistema operativo donde se ejecutan las VMs se llama \textbf{Host}, y los sistemas virtualizados son los \textbf{Guests} o “invitados”.
+        \item Virtualización vs Emulación: la virtualización aprovecha recursos reales con ayuda de la CPU (VT-x/AMD-V), mientras que la emulación reproduce completamente otra arquitectura (más lento).
+    \end{itemize}
+    \vspace{0.3cm}
+    \textbf{Ejemplo:} Ejecutar Windows y Ubuntu en la misma computadora al mismo tiempo, pero aislados.
+\end{frame}
+
+%----------------------------------
+\subsection{Historia y Evolución de la Virtualización}
+\begin{frame}{1.2 Historia y Evolución (I)}
+    \begin{itemize}
+        \item \textbf{Décadas de 1960-1970:} IBM desarrolla técnicas de virtualización para compartir recursos en grandes mainframes.
+        \item \textbf{Década de 1990:} VMware introduce la virtualización en arquitecturas x86, permitiendo correr varios sistemas operativos de escritorio/servidor.
+        \item \textbf{Años 2000 en adelante:} Crecimiento exponencial en centros de datos y surgimiento de la computación en la nube.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{1.2 Historia y Evolución (II)}
+    \begin{itemize}
+        \item \textbf{Hypervisores de tipo 1:} Ej. VMware ESXi, orientados a entornos de servidor.  
+        \item \textbf{Hypervisores de tipo 2:} Ej. VMware Workstation, VirtualBox, orientados a equipos de escritorio.
+        \item \textbf{Actualidad:} Virtualización y contenedores (Docker, Kubernetes) son pilares fundamentales de la computación moderna.
+    \end{itemize}
+    \vspace{0.3cm}
+    \textbf{Importancia:} Permite un uso más eficiente de los recursos y acelera el despliegue de nuevos servicios.
+\end{frame}
+
+%----------------------------------
+\subsection{Beneficios Principales}
+\begin{frame}{1.3 Beneficios Principales (I)}
+    \begin{itemize}
+        \item \textbf{Aislamiento:} Problemas en una VM no afectan otras VMs ni al sistema principal.
+        \item \textbf{Consolidación:} Varios servicios o sistemas corriendo en un solo equipo físico (menos hardware).
+        \item \textbf{Flexibilidad:} Permite pruebas de distintas configuraciones sin comprometer la máquina real.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{1.3 Beneficios Principales (II)}
+    \begin{itemize}
+        \item \textbf{Despliegue rápido:} Clonar o crear nuevas VMs es mucho más ágil que instalar en hardware físico.
+        \item \textbf{Recuperación ante desastres:} Con snapshots y copias de seguridad es fácil revertir o restaurar.
+        \item \textbf{Ahorro de costes:} Menos servidores físicos, reducción en consumo de energía y espacio.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Desventajas o Desafíos}
+\begin{frame}{1.4 Desventajas y Desafíos (I)}
+    \begin{itemize}
+        \item \textbf{Sobrecarga de hardware:} El hypervisor consume recursos y cada VM también, por lo que puede haber decremento en el rendimiento.
+        \item \textbf{Complejidad:} Requiere conocimientos de virtualización, redes virtuales y licenciamiento.
+        \item \textbf{Licenciamiento de software:} Cada VM puede requerir licencias adicionales para el sistema operativo y las aplicaciones.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{1.4 Desventajas y Desafíos (II)}
+    \begin{itemize}
+        \item \textbf{Limitaciones físicas:} Si el host se daña, se pierden todas las VMs en él (a menos que haya alta disponibilidad).
+        \item \textbf{Seguridad:} Aunque aísla las VMs, si el hypervisor es comprometido, existe un riesgo mayor para todas las VMs.
+        \item \textbf{Planificación de recursos:} Difícil optimizar CPU, RAM y disco cuando se ejecutan muchas VMs a la vez.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 2. Requisitos Previos de Hardware y Software
+%=====================================================================
+\section{Requisitos Previos de Hardware y Software}
+
+%----------------------------------
+\subsection{Compatibilidad de CPU}
+\begin{frame}{2.1 Compatibilidad de CPU (I)}
+    \begin{itemize}
+        \item \textbf{Intel VT-x (Virtualization Technology)} o \textbf{AMD-V:} Extensiones de CPU que permiten la ejecución de VMs con mayor rendimiento.
+        \item Verificar en la \textbf{BIOS/UEFI} que estén habilitadas. A veces figuran como “Virtualization Technology” o “SVM Mode”.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{2.1 Compatibilidad de CPU (II)}
+    \begin{itemize}
+        \item \textbf{Intel VT-d / AMD-Vi (IOMMU):} Funcionalidad adicional para asignar dispositivos físicos directamente a VMs (passthrough).
+        \item Importante en entornos donde se necesite acceder a hardware especializado, como tarjetas gráficas dedicadas.
+    \end{itemize}
+    \textbf{Nota:} No todas las CPU de gama baja incluyen estas características; es clave revisarlo antes de intentar la virtualización.
+\end{frame}
+
+%----------------------------------
+\subsection{Compatibilidad de la Placa Base}
+\begin{frame}{2.2 Compatibilidad de la Placa Base}
+    \begin{itemize}
+        \item \textbf{BIOS/UEFI actualizada:} Verificar en la web del fabricante para ver si hay soporte mejorado de virtualización.
+        \item El chipset debe soportar las funciones de virtualización: \textbf{Intel Q series} (Q35, etc.) o \textbf{AMD 970, 990, etc.}
+        \item Opciones en el menú de configuración: a veces llamadas \textbf{“Intel Virtualization Tech”} o \textbf{“SVM Support”}.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Memoria RAM recomendada}
+\begin{frame}{2.3 Memoria RAM recomendada}
+    \begin{itemize}
+        \item \textbf{8 GB de RAM mínimo} en el host para laboratorios sencillos (1-2 VMs ligeras).
+        \item \textbf{16 GB o más:} recomendado para ejecutar varias VMs simultáneamente (por ejemplo, un entorno de desarrollo).
+        \item Tener en cuenta que la RAM asignada a la VM deja menos disponible para el sistema host.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Espacio en Disco y tipo de almacenamiento}
+\begin{frame}{2.4 Espacio en Disco y Tipo de Almacenamiento}
+    \begin{itemize}
+        \item \textbf{Disco SSD:} Lectura y escritura más rápidas, reduce el tiempo de arranque de VMs.
+        \item \textbf{Capacidad:} Una instalación de Ubuntu Desktop puede requerir entre 10 y 20 GB, más los datos que se generen.
+        \item \textbf{Planificar el número de VMs:} Con 2-3 VMs simultáneas, se pueden necesitar 80-100 GB (o más) dependiendo de las aplicaciones.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Requisitos de software del sistema anfitrión}
+\begin{frame}{2.5 Requisitos de software del Host (I)}
+    \begin{itemize}
+        \item \textbf{Sistema Operativo Host:} Windows (10/11), Linux (variantes como Ubuntu, Fedora), macOS (en algunos casos).
+        \item \textbf{VMware Workstation/Player o Hypervisor elegido:} Descargar la versión adecuada para tu SO host.
+        \item Controladores de hardware actualizados para un mejor rendimiento y estabilidad.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{2.5 Requisitos de software del Host (II)}
+    \begin{itemize}
+        \item \textbf{Herramientas de desarrollo (opcional en Linux):} Paquetes \texttt{build-essential}, \texttt{gcc}, \texttt{linux-headers}, etc., si el hypervisor compila módulos.
+        \item \textbf{Herramientas de red:} \texttt{net-tools}, \texttt{iproute2}, etc., para verificar conectividad y redes virtuales.
+        \item \textbf{Evitar conflictos:} entre software de virtualización
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Herramientas de diagnóstico}
+\begin{frame}{2.6 Herramientas de diagnóstico}
+    \begin{itemize}
+        \item \texttt{lscpu}: Muestra información de la CPU y si soporta virtualización.
+        \item \texttt{dmidecode}: Información del BIOS/UEFI y del sistema.
+        \item \texttt{cpuinfo}: Dependiendo del SO, revisar /proc/cpuinfo en Linux.
+        \item \textbf{Diagnóstico en Windows:} \texttt{msinfo32}, o en “Información del sistema”.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 3. Firmware del Equipo: BIOS vs UEFI
+%=====================================================================
+\section{Firmware del Equipo: BIOS vs UEFI}
+
+%----------------------------------
+\subsection{BIOS (Basic Input/Output System)}
+\begin{frame}{3.1 BIOS (I)}
+    \begin{itemize}
+        \item Sistema tradicional utilizado en equipos más antiguos.
+        \item \textbf{Función principal:} Inicializar y comprobar los componentes de hardware (POST) y cargar el sistema operativo.
+        \item Limite de 2 TB cuando se usa MBR como tabla de particiones.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{3.1 BIOS (II)}
+    \begin{itemize}
+        \item \textbf{Configuración:} Se accede generalmente con teclas como F2, Del, F10 al encender el equipo.
+        \item Se elige el \textbf{orden de arranque} (CD, USB, disco duro).
+        \item \textbf{Opciones de virtualización:} Activar VT-x/AMD-V puede aparecer como “Intel Virtualization” o “SVM”.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{UEFI (Unified Extensible Firmware Interface)}
+\begin{frame}{3.2 UEFI (I)}
+    \begin{itemize}
+        \item \textbf{Evolución de BIOS}: Soporta discos de gran tamaño (>2 TB) y tiene una interfaz más moderna.
+        \item \textbf{ESP (EFI System Partition)}: Partición FAT32 donde se almacenan los archivos de arranque (bootloaders).
+        \item Soporta \textbf{gráficos y ratón} en el menú de configuración, lo que facilita su uso.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{3.2 UEFI (II)}
+    \begin{itemize}
+        \item \textbf{Variables UEFI}: Almacenan ajustes en NVRAM (memoria no volátil).
+        \item Ofrece \textbf{Secure Boot}, funcionalidad de seguridad que solo arranca software firmado.
+        \item \textbf{Mayor flexibilidad}: No se limita a 4 particiones primarias como MBR, y puede tener múltiples entradas de arranque.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Modos de compatibilidad (CSM)}
+\begin{frame}{3.3 Modos de compatibilidad (CSM)}
+    \begin{itemize}
+        \item \textbf{CSM (Compatibility Support Module)}: Permite a la UEFI comportarse como BIOS Legacy.
+        \item Útil cuando un sistema operativo o un disco no son compatibles con arranque en modo UEFI.
+        \item Puede requerirse desactivar \textbf{Secure Boot} para usar CSM.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 4. Tablas de Particiones: MBR vs GPT
+%=====================================================================
+\section{Tablas de Particiones: MBR vs GPT}
+
+%----------------------------------
+\subsection{Estructura interna de MBR y sus limitaciones}
+\begin{frame}{4.1 Estructura de MBR (I)}
+    \begin{itemize}
+        \item \textbf{Master Boot Record (MBR):} Se ubica en el primer sector (512 bytes) del disco duro.
+        \item Contiene \textbf{código de arranque} (bootloader primario) + tabla de particiones.
+        \item Sólo soporta \textbf{4 particiones primarias} o 3 primarias + 1 extendida.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{4.1 Estructura de MBR (II)}
+    \begin{itemize}
+        \item Límite de \textbf{2 TB} para el disco, lo que resulta insuficiente para servidores modernos.
+        \item \textbf{Sector de arranque}: Almacena el programa que inicia el sistema operativo (ej. primera etapa de GRUB).
+        \item Si se corrompe el MBR, el disco puede dejar de ser arrancable.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{GPT y ventajas sobre MBR}
+\begin{frame}{4.2 GPT (I)}
+    \begin{itemize}
+        \item \textbf{GUID Partition Table (GPT)}: Usa identificadores únicos globales (GUID) para cada partición.
+        \item Soporta \textbf{discos muy grandes}, más allá de los 2 TB.
+        \item \textbf{Mayor número de particiones}: Sin la limitación de sólo 4 como en MBR.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{4.2 GPT (II)}
+    \begin{itemize}
+        \item \textbf{Tabla de respaldo}: GPT guarda una copia al final del disco, facilitando la recuperación en caso de corrupción.
+        \item Requerido en la mayoría de sistemas UEFI para el arranque nativo.
+        \item Es la forma recomendada para discos modernos, especialmente en SSDs grandes.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Tipos de Particiones (Primaria, Extendida, Lógica)}
+\begin{frame}{4.3 Tipos de Particiones}
+    \begin{itemize}
+        \item \textbf{Partición Primaria:} Directamente arrancable; en MBR, solo 4 primarias como máximo.
+        \item \textbf{Extendida:} Estructura contenedora para crear \textbf{particiones lógicas} adicionales.
+        \item \textbf{Particiones Lógicas:} Se ubican dentro de la extendida; util para subdividir más de 4 particiones en MBR.
+        \item En GPT no existe el concepto de primaria vs. extendida/lógica, todas las particiones son similares.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Particiones en modo UEFI (EFI System Partition)}
+\begin{frame}{4.4 EFI System Partition (ESP)}
+    \begin{itemize}
+        \item Partición necesaria en equipos con UEFI donde se instalan los \textbf{bootloaders} (por ej. GRUB EFI).
+        \item \textbf{Formato FAT32}, suele tener entre 100 y 300 MB.
+        \item \textbf{Ruta típica}: \texttt{/boot/efi} en Linux, con una carpeta para cada sistema operativo.
+        \item Permite arranques múltiples (dual-boot) de forma más sencilla que MBR.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 5. Tipos de Virtualización
+%=====================================================================
+\section{Tipos de Virtualización}
+
+%----------------------------------
+\subsection{Virtualización Completa}
+\begin{frame}{5.1 Virtualización Completa (I)}
+    \begin{itemize}
+        \item El hypervisor emula o abstrae todo el hardware: CPU, memoria, controladores de red, etc. 
+            \subitem El disco duro podría no virtualizarse en hipervisores de tipo 1 en un entorno de servidor.
+        \item El sistema operativo invitado se instala “como si” estuviera en un hardware físico real.
+        \item Ejemplos: \textbf{VMware Workstation}, \textbf{VirtualBox} (modo completo), QEMU (con aceleración).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{5.1 Virtualización Completa (II)}
+    \begin{itemize}
+        \item \textbf{Ventajas:} Compatibilidad amplia, cualquier SO que corra en esa arquitectura.
+        \item \textbf{Desventajas:} Mayor overhead comparado con otras técnicas (paravirtualización).
+        \item Útil para laboratorios donde se requiera probar diferentes sistemas operativos sin modificaciones.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Paravirtualización}
+\begin{frame}{5.2 Paravirtualización (I)}
+    \begin{itemize}
+        \item El \textbf{SO invitado} sabe que está virtualizado y utiliza drivers paravirtualizados para ciertas operaciones. 
+        \begin{itemize}
+            \item El SO invitado debe ser modificado para sustituir ciertas instrucciones por llamadas al hipervisor (a través de una API).        
+        \end{itemize}
+        \item Reduce la emulación de hardware, lo que se traduce en \textbf{mejor rendimiento}.
+        \item Caso típico: \textbf{Xen}, \textbf{KVM} con virtio drivers en Linux.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{5.2 Paravirtualización (II)}
+    \begin{itemize}
+        \item \textbf{Requiere cooperación}: El kernel invitado debe tener el soporte paravirtualizado.
+        \item \textbf{Menor overhead}: Aprovecha instruccciones específicas y llamadas directas al hypervisor.
+        \item Ideal para entornos de servidor donde se controlan las imágenes del sistema operativo.
+        \item \textbf{wsl2} está paravirtualizado utilizando un hipervisor de tipo 2 (Hyper-V porque corre sobre Windows 10/11).
+        \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Virtualización a Nivel de SO (Contenedores)}
+\begin{frame}{5.3 Virtualización a Nivel de SO (I)}
+    \begin{itemize}
+        \item Se basa en compartir el \textbf{mismo kernel} del host con múltiples entornos aislados.
+        \item Ejemplos: \textbf{Docker}, \textbf{LXC}, \textbf{Podman}.
+        \item \textbf{Ligereza:} Consumimos menos recursos que una máquina virtual completa.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{5.3 Virtualización a Nivel de SO (II)}
+    \begin{itemize}
+        \item \textbf{Limitación:} Solo puede virtualizar sistemas que usen el mismo tipo de kernel (por ejemplo, contenedores Linux sobre host Linux).
+        \item Muy popular en \textbf{DevOps} y despliegue continuo.
+        \item Combina bien con orquestadores como \textbf{Kubernetes} para escalabilidad masiva.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{Emulación}
+\begin{frame}{5.4 Emulación}
+    \begin{itemize}
+        \item El software \textbf{imita por completo} una arquitectura distinta a la del hardware real (ej. emular ARM sobre x86).
+        \item Mucho más \textbf{lento} que la virtualización, pero posibilita compatibilidad total con SO diseñados para otra CPU.
+        \item Ejemplo: \textbf{QEMU} emulando plataformas embebidas, consolas de videojuegos, etc.
+    \end{itemize}
+\end{frame}
+
+
+
+\end{document}

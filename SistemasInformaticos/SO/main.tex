@@ -1,0 +1,431 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+
+\setcounter{secnumdepth}{2} % Profundidad de secciones y subsecciones
+\makeatletter
+
+\renewcommand\thesection{\arabic{section}}              % Ej: "1"   en lugar de "Section 1"
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}  % Ej: "1.1"
+\makeatother
+
+ %---------- OPCIÓN 3: SECCIÓN.SUBSECCIÓN.FRAME ----------
+ %(sólo si manejas secciones/subsecciones numeradas)
+\setbeamertemplate{frametitle}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{frametitle}%
+    \quad \thesubsection\quad \insertframetitle
+  \end{beamercolorbox}%
+}
+
+ 
+% ==== SECCIONADO AUTOMÁTICO EN DIAPOSITIVAS ====
+% Muestra una diapositiva con el título de la sección al comenzar cada \section
+\AtBeginSection[]{
+    \begin{frame}[plain]
+        \centering
+        \vfill
+        {\usebeamerfont{section title}\Huge \insertsectionhead}
+        \vfill
+    \end{frame}
+}
+
+% Muestra una diapositiva con el título de la subsección al comenzar cada \subsection
+\AtBeginSubsection[]{
+    \begin{frame}[plain]
+        \centering
+        \vfill
+        {\usebeamerfont{subsection title}\Large \insertsubsectionhead}
+        \vfill
+    \end{frame}
+}
+% ==============================================
+
+\usetheme{Madrid} % Puedes cambiar el tema según prefieras
+
+\title{Introducción a los Sistemas Operativos}
+\author{Víctor de Juan}
+\date{Curso 2024-2025}
+
+\setcounter{secnumdepth}{2} % Profundidad de secciones y subsecciones
+
+\begin{document}
+
+%-------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% ------------------
+% PRIMERA SECCIÓN (antes del índice)
+% ------------------
+
+\begin{frame}{Índice General}
+    \tableofcontents
+\end{frame}
+
+% ------------------
+% SEGUNDA SECCIÓN
+% ------------------
+
+%----------------------------------------------------------------------------------------
+% 1. INTRODUCCIÓN
+%----------------------------------------------------------------------------------------
+\section{Introducción}
+\subsection{Sistema Operativo}
+\begin{frame}{¿Qué es un Sistema Operativo?}
+    \begin{itemize}
+        \item Un sistema operativo (SO) es un software fundamental que actúa como intermediario entre el usuario y el hardware.
+        \item Gestiona y coordina los recursos del sistema (CPU, memoria, dispositivos) de forma eficiente.
+        \item Simplifica la interacción del usuario y de los programas con los componentes físicos de la computadora.
+        \item Ofrece un conjunto de servicios y abstracciones (archivos, procesos, etc.) que facilitan el desarrollo y la ejecución de aplicaciones.
+    \end{itemize}
+    \vfill
+    \centering
+    \textbf{¿Un microondas tiene sistema operativo? ¿Y una lavadora?}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% FRAME: FIRMWARE, SO Y DRIVER
+%----------------------------------------------------------------------------------------
+\subsection{Firmware, SO y Drivers}
+\begin{frame}{Firmware, SO y Driver: Diferencias (1/3)}
+    \begin{itemize}
+        \item \textbf{Firmware}:
+            \begin{itemize}
+                \item Software de muy bajo nivel, grabado en memoria no volátil (ROM, EEPROM, Flash).
+                \item Controla las funciones básicas de un dispositivo sin necesidad de un sistema operativo.
+                \item Se actualiza con poca frecuencia y está muy ligado al hardware.
+                \item \textbf{Ejemplos reales}:
+                    \begin{itemize}
+                        \item BIOS/UEFI de una PC, que permite el arranque del sistema.
+                        \item Firmware de un router, que maneja la conectividad sin necesidad de un SO adicional.
+                        \item Firmware de una lavadora inteligente, que gestiona los ciclos de lavado.
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Firmware, SO y Driver: Diferencias (2/3)}
+    \begin{itemize}
+        \item \textbf{Sistema Operativo (SO)}:
+            \begin{itemize}
+                \item Software que gestiona recursos (CPU, memoria, dispositivos) y ofrece servicios a otras aplicaciones.
+                \item Se ejecuta normalmente sobre el hardware y facilita la interacción con el usuario y otros programas.
+                \item Puede manejar múltiples procesos y \textbf{coordinar} el uso del hardware.
+                \item \textbf{Ejemplos reales}:
+                    \begin{itemize}
+                        \item \textbf{Windows 11}: Uso en PC y entornos empresariales.
+                        \item \textbf{Linux (Ubuntu, Debian, Red Hat, Fedora, Arch-Linux...)}: Presente en servidores, IoT y PC.
+                        \item \textbf{Android (basado en Linux)}: Utilizado en smartphones y televisores inteligentes.
+                        \item \textbf{FreeRTOS}: Utilizado en sistemas embebidos como electrodomésticos y dispositivos IoT.
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Firmware, SO y Driver: Diferencias (3/3)}
+    \begin{itemize}
+        \item \textbf{Driver}:
+            \begin{itemize}
+                \item Programa o módulo que actúa como traductor entre el SO y un hardware específico.
+                \item Cada dispositivo (impresora, tarjeta de red, GPU, etc.) necesita su driver para funcionar correctamente.
+                \item Gestiona las operaciones de E/S y la comunicación a bajo nivel con el dispositivo.
+                \item Puede estar incluido en el sistema operativo o requerir instalación manual.
+                \item \textbf{Ejemplos reales}:
+                    \begin{itemize}
+                        \item \textbf{Driver de GPU (NVIDIA, AMD, Intel)}: Permite la aceleración 3D y el procesamiento gráfico avanzado.
+                        \item \textbf{Driver de impresora HP o Epson}: Traducen comandos de impresión en instrucciones específicas para el hardware.
+                        \item \textbf{Driver de audio (Realtek, Sound Blaster)}: Controla la salida y entrada de sonido en el sistema.
+                        \item \textbf{Driver genérico HID (Human Interface Device)}: Permite el uso de teclados y ratones sin necesidad de instalación manual.
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% SECCIÓN: EL PROCESADOR Y LOS DRIVERS
+%----------------------------------------------------------------------------------------
+\section{El Procesador y los Drivers}
+
+%----------------------------------------------------------------------------------------
+% SUBSECCIÓN: VISIÓN GENERAL
+%----------------------------------------------------------------------------------------
+\subsection{Visión General}
+
+\begin{frame}{¿Dónde se ejecutan los drivers?}
+    \begin{itemize}
+        \item Un driver es un software que se ejecuta en la \textbf{CPU del sistema} (procesador principal).
+        \item Se encarga de \textbf{comunicarse con el dispositivo de hardware}, traduciendo las peticiones del sistema operativo.
+        \item La complejidad del driver depende del \textbf{tipo de dispositivo}: desde periféricos simples (ratón, teclado) hasta sistemas avanzados (GPU).
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% SUBSECCIÓN: DRIVERS SIMPLES
+%----------------------------------------------------------------------------------------
+\subsection{Drivers Simples}
+
+\begin{frame}{Ejemplo: Ratón o Teclado}
+    \begin{itemize}
+        \item Dispositivos de entrada con \textbf{baja complejidad}.
+        \item El driver genérico (HID) se encarga de interpretar movimientos y clics.
+        \item \textbf{Flujo de funcionamiento}:
+            \begin{enumerate}
+                \item El usuario mueve el ratón (o pulsa una tecla).
+                \item El ratón/teclado envía señales (USB, Bluetooth, etc.) con coordenadas o pulsaciones.
+                \item La \textbf{CPU} procesa la señal mediante el \textbf{driver HID}.
+                \item El \textbf{SO} actualiza la posición del cursor o muestra la pulsación.
+            \end{enumerate}
+        \item Bajo consumo de recursos y respuestas rápidas.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% SUBSECCIÓN: DRIVERS INTERMEDIOS
+%----------------------------------------------------------------------------------------
+\subsection{Drivers Intermedios}
+
+\begin{frame}{Ejemplo: Tarjeta de Sonido o Impresora}
+    \begin{itemize}
+        \item La CPU realiza más trabajo que en un ratón/teclado.
+        \item \textbf{Tarjeta de sonido}:
+            \begin{itemize}
+                \item Recibe datos de audio (MP3, WAV, etc.) de una aplicación.
+                \item El \textbf{driver} convierte estos datos en señales que la tarjeta pueda procesar.
+                \item La tarjeta de sonido reproduce el audio mediante su DAC (Digital-to-Analog Converter).
+                \item Algunas tarjetas tienen \textbf{DSP} (Digital Signal Processor), que asume parte del procesamiento.
+            \end{itemize}
+        \item \textbf{Impresora}:
+            \begin{itemize}
+                \item El driver traduce los documentos en un formato comprensible para el hardware.
+                \item Controla detalles como resolución, color, y manejo de páginas.
+            \end{itemize}
+        \item Este tipo de drivers implica una \textbf{carga media} para la CPU.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% SUBSECCIÓN: DRIVERS COMPLEJOS
+%----------------------------------------------------------------------------------------
+\subsection{Drivers Complejos}
+
+\begin{frame}{Ejemplo: Tarjeta Gráfica (GPU)}
+    \begin{itemize}
+        \item Una GPU moderna tiene su propio procesador especializado y memoria dedicada.
+        \item El \textbf{driver gráfico} es muy complejo y gestiona:
+            \begin{itemize}
+                \item Renderizado 3D, shaders, cálculo de física, codificación/decodificación de video.
+                \item Coordinación entre CPU y GPU para dividir cargas de trabajo.
+            \end{itemize}
+        \item \textbf{Flujo en un videojuego}:
+            \begin{enumerate}
+                \item La CPU recibe instrucciones para generar gráficos.
+                \item El \textbf{driver} envía comandos a la GPU (renderizado, texturas, efectos).
+                \item La GPU procesa en \textbf{paralelo}, genera las imágenes y las envía al monitor.
+                \item El juego sigue funcionando mientras la GPU trabaja (procesamiento en paralelo).
+            \end{enumerate}
+        \item Sin un driver adecuado, la GPU solo funcionaría en un \textbf{modo básico}.
+    \end{itemize}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+% EVOLUCIÓN
+%----------------------------------------------------------------------------------------
+\begin{frame}{Importancia y Evolución}
+    \begin{itemize}
+        \item Los primeros SO surgieron para automatizar y agilizar la ejecución de tareas repetitivas (procesamiento por lotes).
+        \item Con el tiempo, se incorporaron funcionalidades de tiempos compartidos y entornos multiusuario.
+        \item Actualmente, se espera que un SO sea robusto, seguro, flexible, multiplataforma y con interfaces intuitivas.
+        \item Ejemplos de evolución:
+        \begin{itemize}
+            \item \textbf{UNIX} (años 70): base de la filosofía de multitarea y multiusuario.
+            \item \textbf{Windows} (años 80 y 90): popularización en computadoras personales.
+            \item \textbf{Linux} (años 90): distribución libre y de código abierto, muy extendida en servidores.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% 2. FUNCIONES DEL SISTEMA OPERATIVO
+%----------------------------------------------------------------------------------------
+\section{Funciones del Sistema Operativo}
+\subsection{Procesos, Memoria, Dispositivos...}
+
+\begin{frame}{Gestión de Procesos \& Sincronización}
+    \begin{itemize}
+        \item \textbf{Gestión de Procesos}: El SO crea, planifica y finaliza procesos, que son programas en ejecución.
+        \item \textbf{Sincronización de Procesos}: Coordina la ejecución de varios procesos o hilos (threads) que comparten datos o recursos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Gestión de Memoria}
+    \begin{itemize}
+        \item Asigna y libera \textbf{espacios de memoria} para procesos y datos.
+        \item Implementa \textbf{memoria virtual} para simular más memoria de la que hay físicamente. (\emph{Nuetra VM utilizará la parcición de swap que creamos}
+        \item Garantiza el aislamiento entre procesos, de manera que no interfieran en la memoria de otros.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Gestión de Dispositivos y Drivers}
+    \begin{itemize}
+        \item Un \textbf{driver} o controlador de hardware es un programa especializado que permite al SO comunicarse con un dispositivo.
+        \item Simplifica y uniformiza la interacción con periféricos y hardware.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Seguridad y Control de Errores}
+    \begin{itemize}
+        \item Gestión de usuarios, permisos y autenticación.
+        \item Manejo de excepciones, interrupciones y señales para mantener la estabilidad del sistema.
+        \item Interrupción: Ctr-C en Ubuntu.
+        \item Señal: SIGSEV (Segmentation Fault).
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% 3. EL KERNEL
+%----------------------------------------------------------------------------------------
+\section{El Kernel}
+\subsection{Núcleo}
+
+\begin{frame}{Definición de Kernel}
+    \begin{itemize}
+        \item Es el \textbf{núcleo} del SO y se ejecuta en modo privilegiado.
+        \item Gestiona la comunicación directa con el hardware y con los procesos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Monolítico vs. Microkernel}
+    \begin{itemize}
+        \item \textbf{Monolítico}: todo el SO se ejecuta en modo kernel (ej. Linux).
+        \begin{itemize}
+            \item Rendimiento superior.
+            \item Buena integración de servicios.
+            \item Menos Difícil de mantener y modificar.
+        \end{itemize}
+        \item \textbf{Microkernel}: sólo lo esencial en modo kernel, y el resto en espacio de usuario (ej. Minix, QNX).
+        \begin{itemize}
+            \item Mayor estabilidad.
+            \item Ideal para sistemas críticos y embebidos.
+            \item Mayor flexibibilidad.
+            \item Más complejidad para sincronizar procesos.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% 4. CLASIFICACIÓN DE LOS SISTEMAS OPERATIVOS
+%----------------------------------------------------------------------------------------
+\section{Clasificación de los Sistemas Operativos}
+
+\subsection{Por número de usuarios y tareas}
+\begin{frame}{Por número de usuarios y tareas}
+    \begin{itemize}
+        \item \textbf{Monousuario} vs. \textbf{Multiusuario}
+        \item \textbf{Monotarea} vs. \textbf{Multitarea}
+    \end{itemize}
+\end{frame}
+
+\subsection{Por tipo de procesamiento (CPU)}
+\begin{frame}{Por tipo de procesamiento (CPU)}
+    \begin{itemize}
+        \item \textbf{Monoprocesador}
+        \item \textbf{Multiprocesador}
+        \item \textbf{Multinúcleo}
+    \end{itemize}
+\end{frame}
+
+\subsection{Sistemas Centralizados vs. Distribuidos}
+\begin{frame}{Sistemas Centralizados vs. Distribuidos}
+    \begin{itemize}
+        \item \textbf{Centralizados}: un único equipo con todos los recursos.
+        \item \textbf{Distribuidos}: varios equipos independientes que cooperan.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sistemas en la Nube}
+    \begin{itemize}
+        \item Abstracción de hardware, recursos bajo demanda.
+        \item Altamente escalables y con alta disponibilidad.
+    \end{itemize}
+    \vfill
+    \centering
+    Arquitectura de microservicios para servidores web.
+\end{frame}
+
+\subsection{Otras Clasificaciones}
+\begin{frame}{Otras Clasificaciones}
+    \begin{itemize}
+        \item \textbf{Tiempo Real}
+        \item \textbf{Sistemas Empotrados/Embebidos}
+        \item \textbf{Sistemas Híbridos}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% 5. EJEMPLOS REALES
+%----------------------------------------------------------------------------------------
+\subsection{Ejemplos Reales de Sistemas Operativos}
+
+\begin{frame}{Windows}
+    \begin{itemize}
+        \item Multitarea y multiusuario.
+        \item Kernel propietario bastante monolítico.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linux}
+    \begin{itemize}
+        \item Kernel monolítico.
+        \item Amplio soporte y aplicaciones en servidores, supercomputación y dispositivos embebidos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{macOS}
+    \begin{itemize}
+        \item Basado en Darwin (BSD + XNU).
+        \item Integrado con hardware de Apple.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Android e iOS}
+    \begin{itemize}
+        \item \textbf{Android}: Kernel Linux, adaptado a dispositivos móviles.
+        \item \textbf{iOS}: Derivado de Darwin (XNU), muy optimizado para hardware Apple.
+    \end{itemize}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+% 7. TENDENCIAS ACTUALES
+%----------------------------------------------------------------------------------------
+\section{Actualidad}
+
+\subsection{Tendencias}
+\begin{frame}{Virtualización y Contenedores}
+    \begin{itemize}
+        \item Máquinas virtuales vs. contenedores (Docker).
+        \item Orquestación (Kubernetes) y escalabilidad.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sistemas Operativos en la Nube}
+    \begin{itemize}
+        \item IaaS, PaaS, SaaS.
+        \item Distribución de recursos y alta disponibilidad.
+    \end{itemize}
+\end{frame}
+
+\subsection{Seguridad y Retos Actuales}
+\begin{frame}{Seguridad y Retos Actuales}
+    \begin{itemize}
+        \item Cifrado, aislamiento de procesos, protección contra malware.
+        \item Diseño para IoT con recursos limitados y complejidad creciente.
+    \end{itemize}
+\end{frame}
+
+
+\end{document}

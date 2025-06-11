@@ -1,0 +1,6 @@
+INFO: El sistema ha iniciado correctamente.
+ERROR: No se pudo conectar con la base de datos.
+DEBUG: Variable 'x' no inicializada.
+INFO: La tarea finalizó exitosamente.
+ERROR: Se detectó un problema en el módulo 3.
+DEBUG: Tiempo de ejecución = 10ms.

@@ -1,0 +1,13 @@
+Esta es una línea de ejemplo.
+
+Esta línea está duplicada.
+Esta línea está duplicada.
+
+Otra línea más para probar.
+
+Esta es una otra línea de ejemplo más.
+
+Esta línea está duplicada.
+Esta línea está duplicada.
+
+Otra línea adicional de ejemplo.

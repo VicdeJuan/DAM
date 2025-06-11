@@ -1,0 +1,180 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usefonttheme{professionalfonts}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{Virtualización con VMware y Ubuntu}
+\subtitle{Parte 4}
+\author{Víctor de Juan}
+\date{\today}
+
+\begin{document}
+
+%----------------------------------
+% Portada
+%----------------------------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%----------------------------------
+% Índice de la Parte 4
+%----------------------------------
+\begin{frame}{Índice - Parte 4}
+    \tableofcontents[
+    hideallsubsections]
+\end{frame}
+
+%=====================================================================
+% 18. Otros Hypervisores y Comparativa Rápida
+%=====================================================================
+\section{Otros Hypervisores y Comparativa Rápida}
+
+%----------------------------------
+\subsection{18.1 VirtualBox}
+\begin{frame}{VirtualBox (I)}
+    \begin{itemize}
+        \item \textbf{Desarrollado por Oracle}, antes Innotek y Sun Microsystems.
+        \item \textbf{Open Source Edition (OSE)} y versión propietaria con extensiones.
+        \item Muy popular en entornos académicos y de desarrollo por su gratuidad y facilidad.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{VirtualBox (II)}
+    \begin{itemize}
+        \item \textbf{Características}:
+            \begin{itemize}
+                \item Creación de múltiples snapshots (ilimitados).
+                \item Red en modo NAT, Bridged, Host-Only, o redes internas.
+                \item Soporte para “Guest Additions” (similar a VMware Tools), que ofrecen mejor integración y rendimiento.
+            \end{itemize}
+        \item \textbf{Ventajas}:
+            \begin{itemize}
+                \item Gratuito y de código abierto.
+                \item Fácil de usar; interfaz intuitiva.
+            \end{itemize}
+        \item \textbf{Desventajas}:
+            \begin{itemize}
+                \item Históricamente, menor rendimiento 3D que VMware/Hyper-V (aunque ha mejorado).
+                \item Menos opciones empresariales de soporte.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{18.2 Hyper-V}
+\begin{frame}{Hyper-V (I)}
+    \begin{itemize}
+        \item \textbf{Producto de Microsoft}, disponible en:
+            \begin{itemize}
+                \item Windows Server (modo bare metal / Tipo 1).
+                \item Windows 10/11 Pro, Enterprise o Education (Modo “Tipo 2” sobre Windows).
+            \end{itemize}
+        \item Soporta virtualización de Windows y Linux con la funcionalidad de “Enhanced Session Mode”.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hyper-V (II)}
+    \begin{itemize}
+        \item \textbf{Ventajas}:
+            \begin{itemize}
+                \item Integración nativa con Windows.
+                \item Gestión remota y centralizada con herramientas Microsoft (SCVMM).
+            \end{itemize}
+        \item \textbf{Desventajas}:
+            \begin{itemize}
+                \item Incompatibilidad con algunos otros hypervisores (VT-x puede estar bloqueado si Hyper-V está habilitado).
+                \item Menor compatibilidad con macOS o entornos que requieran GPU passthrough en modo escritorio.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{18.3 KVM/QEMU}
+\begin{frame}{KVM/QEMU (I)}
+    \begin{itemize}
+        \item \textbf{KVM} (Kernel-based Virtual Machine): Tecnología de virtualización nativa en el kernel Linux (Tipo 1 a nivel de núcleo).
+        \item \textbf{QEMU} brinda emulación de hardware; junto con KVM acelera la virtualización en arquitecturas x86.
+        \item Utilizado en muchas plataformas de virtualización y contenedorización (como Proxmox, OpenStack, etc.).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{KVM/QEMU (II)}
+    \begin{itemize}
+        \item \textbf{Ventajas}:
+            \begin{itemize}
+                \item Código abierto y libre.
+                \item Altísimo rendimiento, cercano a bare-metal en muchos casos.
+                \item Flexibilidad: soporta múltiples arquitecturas (x86, ARM, PowerPC…).
+            \end{itemize}
+        \item \textbf{Desventajas}:
+            \begin{itemize}
+                \item Curva de aprendizaje mayor si se configura directamente con línea de comandos.
+                \item Interface gráfica no tan “amigable” por defecto (aunque existen herramientas como \textbf{virt-manager}).
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{18.4 Proxmox VE (Enfoque Servidor)}
+\begin{frame}{Proxmox VE (I)}
+    \begin{itemize}
+        \item \textbf{Proxmox Virtual Environment}: Plataforma basada en Debian que combina KVM para virtualización de máquinas y LXC para contenedores.
+        \item Ofrece una interfaz web completa para administrar nodos, redes, almacenamiento, backups, etc.
+        \item \textbf{Diseño clusterizado}: Fácil implementación de alta disponibilidad (HA), replicación y migración en vivo (live migration).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Proxmox VE (II)}
+    \begin{itemize}
+        \item \textbf{Características}:
+            \begin{itemize}
+                \item Soporte de \textbf{CEPH} y ZFS para almacenamiento distribuido o local.
+                \item Gestión de contenedores (LXC) y máquinas virtuales KVM en la misma interfaz.
+            \end{itemize}
+        \item \textbf{Ventajas}:
+            \begin{itemize}
+                \item Solución “todo en uno” para virtualización y contenedores.
+                \item Código abierto y una gran comunidad.
+            \end{itemize}
+        \item \textbf{Desventajas}:
+            \begin{itemize}
+                \item Enfoque principalmente \textbf{servidor}, no tan pensado para escritorio.
+                \item Requiere un mínimo de conocimiento en KVM, redes, almacenamiento.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% Comparativa General
+%=====================================================================
+\section{Comparativa General}
+
+\scriptsize % Reduce el tamaño del texto de la tabla
+\begin{frame}{Tabla Comparativa de algunos Hipervisores}
+\begin{center}
+\scriptsize % Reduce el tamaño del texto de la tabla para ajustarla mejor
+\begin{tabular}{l c c c}
+\toprule
+ & \textbf{VirtualBox} & \textbf{Hyper-V} & \textbf{KVM/QEMU} \\
+\midrule
+\textbf{Licencia} & GPL (OSE) / Prop. & Propietario (MS) & GPL  \\
+\textbf{Tipo} & 2 (Hosted) & 1/2 (según edición) & 1 (Kernel Linux) \\
+\textbf{Uso principal} & Escritorio / Dev & Windows / Servidor & Linux / Servidor \\
+\textbf{Soporte 3D} & Básico / Mejorando & Limitado & Indirecto (virtio) \\
+\textbf{Facilidad de uso} & Alta (GUI simple) & Media (win-based) & Media/Alta (virt-manager) \\
+\textbf{Rendimiento} & Bueno & Muy bueno & Excelente \\
+\textbf{Coste} & Gratis (principal) & Incluido con Win & Gratis \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+
+
+\end{document}

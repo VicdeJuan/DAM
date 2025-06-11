@@ -1,0 +1,314 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usefonttheme{professionalfonts}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{Virtualización con VMware y Ubuntu}
+\subtitle{Parte 2/4}
+\author{Víctor de Juan}
+\date{\today}
+
+\begin{document}
+
+%----------------------------------
+% Portada
+%----------------------------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%----------------------------------
+% Índice de la Parte 2
+%----------------------------------
+\begin{frame}{Índice}
+    \tableofcontents[
+    hideallsubsections]
+\end{frame}
+
+%=====================================================================
+% 6. Hypervisores: Tipo 1 y Tipo 2
+%=====================================================================
+\section{Hypervisores: Tipo 1 y Tipo 2}
+
+%----------------------------------
+\subsection{6.1 Ejemplos de Hypervisores Tipo 1 (Bare Metal)}
+\begin{frame}{Hypervisores de Tipo 1 (Bare Metal) - Conceptos}
+    \begin{itemize}
+        \item \textbf{Definición:} Se instalan directamente sobre el hardware (no necesitan un sistema operativo anfitrión).
+        \item Conocidos como \textit{“bare metal”} porque corren “a pelo” en la máquina física.
+        \item Orientados a entornos de servidores y centros de datos por su alto rendimiento y capacidad de gestión.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ejemplos de Hypervisores Tipo 1}
+    \begin{itemize}
+        \item \textbf{VMware ESXi:} Amplio uso empresarial, integra funciones de clustering y alta disponibilidad.
+        \item \textbf{Microsoft Hyper-V (versión Server):} Incluido en Windows Server; gestión centralizada con herramientas de Microsoft.
+        \item \textbf{Xen / Citrix Hypervisor:} Otro hypervisor popular en entornos de nube y virtualización empresarial.
+        \item \textbf{KVM (en Linux):} A menudo considerado Tipo 1 cuando corre directamente con el kernel Linux como hypervisor.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{6.2 Ejemplos de Hypervisores Tipo 2 (Hosted)}
+\begin{frame}{Hypervisores de Tipo 2 (Hosted) - Conceptos}
+    \begin{itemize}
+        \item \textbf{Definición:} Se ejecutan sobre un sistema operativo anfitrión (Windows, Linux o macOS).
+        \item El hypervisor es una aplicación más, que “hospeda” las máquinas virtuales.
+        \item Más sencillos de instalar y usar en equipos de escritorio o portátiles.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ejemplos de Hypervisores Tipo 2}
+    \begin{itemize}
+        \item \textbf{VMware Workstation / Player}: Gran integración y estabilidad, ideal para entornos de desarrollo y pruebas.
+        \item \textbf{Oracle VirtualBox}: Software libre y muy extendido para usuarios domésticos y laboratorios académicos.
+        \item \textbf{Parallels Desktop (macOS)}: Orientado especialmente para virtualizar Windows y Linux en macOS.
+        \item \textbf{Microsoft Hyper-V (versión Windows 10/11 Pro)}: Se considera Tipo 2 cuando corre “encima” de Windows.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 7. VMware Workstation/Player: Descripción y Diferencias
+%=====================================================================
+\section{VMware Workstation/Player: Descripción y Diferencias}
+
+%----------------------------------
+\subsection{7.1 VMware Workstation Pro vs VMware Workstation Player}
+\begin{frame}{Comparativa: Workstation Pro vs Workstation Player (I)}
+    \begin{itemize}
+        \item \textbf{Workstation Player (gratuito para uso personal)}:
+            \begin{itemize}
+                \item Menos funciones avanzadas (por ejemplo, no soporta crear múltiples snapshots o redes virtuales personalizadas complejas).
+                \item Adecuado para usuarios que necesitan ejecutar una o pocas VMs para tareas básicas.
+            \end{itemize}
+        \item \textbf{Workstation Pro (licencia de pago)}:
+            \begin{itemize}
+                \item Soporta redes virtuales avanzadas, cifrado de VMs, clonaciones (linked/full) y múltiples snapshots.
+                \item Ideal para desarrollo, testing y escenarios empresariales.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{7.2 Licenciamiento y Usos}
+\begin{frame}{7.2 Licenciamiento y Usos}
+    \begin{itemize}
+        \item \textbf{Uso personal y educativo}: Se suele optar por VMware Player si no se requieren las funcionalidades adicionales.
+        \item \textbf{Uso comercial o laboral}: Generalmente se recomienda Workstation Pro, que incluye soporte oficial.
+        \item \textbf{Descuentos académicos}: Algunas instituciones ofrecen licencias de VMware a personal y estudiantes.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{7.3 Compatibilidad (Windows, Linux, macOS)}
+\begin{frame}{7.3 Compatibilidad}
+    \begin{itemize}
+        \item \textbf{Windows y Linux}: Workstation Pro/Player está disponible para ambos. Requisitos de sistema varían.
+        \item \textbf{macOS}: No existe Workstation como tal; en Mac se utiliza \textbf{VMware Fusion}.  
+        \item \textbf{Rendimiento}: Similar en ambos, pero depende de drivers y kernel. A veces la versión de Linux puede requerir recompilar módulos.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 8. Instalación de VMware Workstation/Player en Linux (Ubuntu)
+%=====================================================================
+\section{Instalación de VMware Workstation/Player en Linux (Ubuntu)}
+
+%----------------------------------
+\subsection{8.1 Descargar el instalador}
+\begin{frame}{8.1 Descarga el instalador}
+    \begin{itemize}
+        \item \textbf{Mucho ánimo y mucha suerte}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{8.2 Instalación (II)}
+    \begin{itemize}
+        \item Aparecerá un asistente gráfico o una instalación en la terminal (dependiendo la versión).
+        \item Aceptar la licencia de VMware y continuar.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+
+\begin{frame}{8.3 Módulos de Kernel y requerimientos}
+    \begin{block}{Nota sobre Secure Boot}
+        En sistemas con UEFI y Secure Boot habilitado, puede requerirse \textbf{firmar} los módulos para que puedan cargarse.  
+        O desactivar temporalmente Secure Boot para facilitar la instalación.
+    \end{block}
+    \begin{itemize}
+        \item Tras la instalación, VMware puede solicitar recompilar los módulos al actualizar el kernel.
+        \item Revisar logs si aparece algún error.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{8.4 Posibles problemas (dependencias, permisos, etc.)}
+\begin{frame}{8.4 Problemas comunes}
+    \begin{itemize}
+        \item \textbf{Dependencias no satisfechas:} Asegurarse de tener instalados los paquetes de compilación.
+        \item \textbf{Permisos:} Ejecutar el instalador como usuario root o con \texttt{sudo}.
+        \item \textbf{Secure Boot:} Puede impedir que se carguen los módulos no firmados.
+        \item \textbf{Conflicto con Hyper-V en Windows (solo si usas dual-boot o WSL2)}:
+            \begin{itemize}
+                \item Asegúrate de que Hyper-V esté deshabilitado al usar VMware en Windows.  
+                \item En Linux no suele haber conflicto con WSL2, pero en dual-boot sí.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 9. Creación de una Máquina Virtual en VMware
+%=====================================================================
+\section{Creación de una Máquina Virtual en VMware}
+
+%----------------------------------
+\subsection{9.1 Configuración Típica vs Configuración Avanzada}
+\begin{frame}{9.1 Configuración Típica vs Avanzada}
+    \begin{itemize}
+        \item \textbf{Configuración Típica (Typical):} Asistente rápido, la mayoría de valores se autoconfiguran (memoria, disco, etc.).
+        \item \textbf{Configuración Avanzada (Custom):} Permite ajustar detalles como:
+            \begin{itemize}
+                \item Tipo de compatibilidad de hardware (Workstation 17, 16, etc.).
+                \item Tipo de firmware (BIOS/UEFI).
+                \item Formato de disco (SCSI, NVMe, SATA).
+            \end{itemize}
+        \item Recomendado el modo \textbf{Custom} para mayor control o escenarios especiales.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.2 Compatibilidad de Hardware (Hardware Version)}
+\begin{frame}{9.2 Compatibilidad de Hardware (Hardware Version)}
+    \begin{itemize}
+        \item Cada versión de Workstation (o ESXi) introduce una “\textbf{Hardware Version}”.
+        \item Determina las características soportadas: PCI passthrough, NVMe, USB 3.0, etc.
+        \item Ejemplo: \textbf{Hardware Version 17} en VMware Workstation 17, \textbf{Hardware Version 16} en VMware Workstation 16.
+        \item \textbf{Retrocompatibilidad:} Si necesitas que la VM funcione en una versión anterior, puedes elegir una versión de hardware inferior.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.3 Selección de Firmware (BIOS o UEFI en la VM)}
+\begin{frame}{9.3 Selección de Firmware}
+    \begin{itemize}
+        \item En la configuración de la VM se puede elegir \textbf{BIOS} o \textbf{UEFI}.
+        \item \textbf{UEFI} es más moderno y soporta arranque EFI, Secure Boot (beta en algunos VMware), discos GPT, etc.
+        \item \textbf{BIOS} es adecuado para sistemas legacy o si el invitado no maneja UEFI correctamente.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.4 Tipos de Disco Virtual (VMDK, otros formatos)}
+\begin{frame}{9.4 Tipos de Disco Virtual}
+    \begin{itemize}
+        \item \textbf{VMDK (formato nativo de VMware)}: Recomendado para su ecosistema.
+        \item \textbf{Otros formatos}: VHD (Virtual PC / Hyper-V), VDI (VirtualBox), etc.
+        \item Normalmente, VMware trabaja con VMDK, aunque ofrece herramientas para convertir a otros formatos (\textbf{vmware-vdiskmanager}).
+        \item Elegir \textit{SCSI}, \textit{SATA} o \textit{NVMe} como controlador según la versión de hardware y necesidades de rendimiento.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.5 Thin Provision vs Thick Provision}
+\begin{frame}{9.5 Thin vs Thick Provision}
+    \begin{itemize}
+        \item \textbf{Thin Provision:} El archivo de disco virtual \texttt{.vmdk} crece a medida que se van usando los datos.  
+        \begin{itemize}
+            \item Ahorra espacio inicialmente.
+            \item Puede fragmentarse más o tener impacto en rendimiento al crecer.
+        \end{itemize}
+        \item \textbf{Thick Provision:} Asigna todo el espacio en disco desde un inicio.
+        \begin{itemize}
+            \item Mayor consumo de espacio desde el principio.
+            \item Más predecible en rendimiento.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.6 Opciones de CPU y Memoria (Ballooning, Núcleos, etc.)}
+\begin{frame}{9.6 CPU y Memoria}
+    \begin{itemize}
+        \item \textbf{Asignación de núcleos/hilos:} Depende de la CPU física, no conviene asignar más núcleos de los que realmente se tienen.
+        \item \textbf{Ballooning}: Mecanismo de VMware para ajustar dinámicamente la memoria asignada a la VM si el host la necesita.
+        \item \textbf{Overcommit de memoria}: Se puede asignar más memoria total a las VMs que la RAM física, pero podría haber swapping.
+        \item Recomendación: Ajustar CPU y RAM de acuerdo a las necesidades reales del SO invitado.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.7 Configuración de Red (Bridged, NAT, Host-Only, redes personalizadas)}
+\begin{frame}{9.7 Configuración de Red}
+    \begin{itemize}
+        \item \textbf{Bridged (vmnet0)}: La VM comparte la red física, obtiene IP del router (o DHCP) como si fuera otro equipo en la LAN.
+        \item \textbf{NAT (vmnet8)}: La VM utiliza la IP del host como pasarela para salir a internet; IP interna en la red virtual.
+        \item \textbf{Host-Only (vmnet1)}: Solo se comunica con el host y otras VMs host-only, sin salida a internet (ideal para laboratorios internos).
+        \item \textbf{Redes personalizadas}: En Workstation Pro se pueden crear subredes virtuales, VLAN trunking, etc.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.8 Configuración de USB y otros periféricos (passthrough)}
+\begin{frame}{9.8 Passthrough de USB y periféricos}
+    \begin{itemize}
+        \item Conecta un dispositivo USB directamente a la VM (ej: pendrives, discos externos, impresoras).
+        \item Posible conflicto si el host también quiere usar el dispositivo simultáneamente.
+        \item En VMware, se elige la VM como “destino” del dispositivo en la interfaz.
+        \item \textbf{Requisito:} Instalar drivers dentro de la VM si el SO invitado los requiere.
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{9.9 Ajustes de Gráficos (Aceleración 3D)}
+\begin{frame}{9.9 Ajustes de Gráficos}
+    \begin{itemize}
+        \item \textbf{Aceleración 3D}: VMware ofrece un driver gráfico paravirtualizado.
+        \item Recomendado habilitarla para entornos de escritorio (Unity, GNOME, KDE) y rendimiento de video.
+        \item No es lo mismo que \textbf{GPU passthrough}, que requiere acceso directo al hardware (limitado en Workstation).
+        \item \textbf{Configurar la VRAM}: Ajustar la memoria de video según las necesidades de la aplicación.
+    \end{itemize}
+\end{frame}
+
+%=====================================================================
+% 10. Descarga y Preparación de la ISO de Ubuntu
+%=====================================================================
+\section{Descarga y Preparación de la ISO de Ubuntu}
+
+%----------------------------------
+\subsection{10.1 Tipos de Ubuntu (Desktop, Server, Flavors)}
+\begin{frame}{10.1 Tipos de Ubuntu}
+    \begin{itemize}
+        \item \textbf{Ubuntu Desktop}: Incluye entorno gráfico (GNOME), aplicaciones de oficina, navegador, etc.
+        \item \textbf{Ubuntu Server}: Más ligero, sin entorno gráfico por defecto, orientado a servidores y servicios.
+        \item \textbf{Flavors}: Kubuntu (KDE), Xubuntu (Xfce), Lubuntu (LXQt), Ubuntu MATE, etc.  
+        \begin{itemize}
+            \item Mismas bases de Ubuntu, diferentes entornos de escritorio.
+        \end{itemize}
+        \item Elegir según recursos y propósito (escritorio o servidor).
+    \end{itemize}
+\end{frame}
+
+%----------------------------------
+\subsection{10.2 Verificación de la ISO (Checksum)}
+\begin{frame}{10.2 Verificación de la ISO}
+    \begin{itemize}
+        \item Tras descargar la ISO de la web oficial, se recomienda comprobar la \textbf{integridad} con \texttt{sha256sum} o \texttt{md5sum}.
+        \item \textbf{Ejemplo de uso:}  
+        \begin{itemize}
+            \item \texttt{sha256sum ubuntu-22.04-desktop-amd64.iso}
+            \item Comparar el resultado con el valor en la página oficial.
+        \end{itemize}
+        \item Garantiza que el archivo no se ha corrompido ni modificado de forma maliciosa.
+    \end{itemize}
+\end{frame}
+
+
+
+\end{document}
