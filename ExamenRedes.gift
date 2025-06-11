@@ -1,0 +1,315 @@
+::1. Rellenar huecos::
+"La dirección {1:SHORTANSWER:=MAC#Correcto: la dirección MAC identifica físicamente la tarjeta de red.} identifica de forma física a la tarjeta de red, mientras que la dirección {1:SHORTANSWER:=IP#Correcto: la dirección IP identifica lógicamente el dispositivo en la red.} se utiliza para identificar lógicamente al dispositivo en la red."
+
+#### 
+General feedback: 
+La dirección MAC es asignada por el fabricante y no cambia habitualmente.  
+La dirección IP puede cambiar según la configuración (estática o DHCP).
+###
+
+::2. Selección múltiple (varias respuestas correctas)::
+Cuando cambias un ordenador de una red a otra, ¿qué afirmaciones son correctas?
+{
+~%0% a) Siempre conserva la misma dirección IP.#No, la IP puede cambiar si la red es distinta.
+= b) Puede recibir una IP distinta por DHCP.#Correcto, DHCP puede asignar una nueva IP.
+= c) Si la configuración es estática, se debe cambiar manualmente.#Correcto, si es estática hay que reconfigurarla.
+~%0% d) Cambia la dirección MAC automáticamente.#No, la MAC depende de la tarjeta de red, no de la red.
+= e) Puede que sea necesario actualizar la puerta de enlace y DNS.#Sí, pueden variar al cambiar de red.
+}
+
+#### 
+General feedback:
+Al mover un dispositivo a otra red, su dirección IP puede cambiar, sobre todo si depende de DHCP.  
+Si está configurada de forma estática, se debe ajustar manualmente.  
+La MAC no cambia solo por cambiar de red.
+###
+
+::3. Verdadero/Falso (varias afirmaciones)::
+Lee cada afirmación y marca las que consideres verdaderas:
+{
+~%0% a) Dos dispositivos distintos pueden tener la misma dirección MAC en condiciones normales.#Falso: no deben tener la misma MAC.
+= b) Dos dispositivos en redes diferentes pueden tener la misma dirección IP.#Verdadero: no hay conflicto mientras estén en redes separadas.
+= c) La dirección MAC es asignada por el fabricante de la tarjeta de red.#Verdadero: cada NIC trae su propia MAC.
+~%0% d) La dirección IP no cambia nunca si te mueves a otra red.#Falso: suele cambiar si la red es distinta.
+}
+
+#### 
+General feedback:
+- Las direcciones MAC deben ser únicas para cada tarjeta de red.  
+- Dos hosts en redes separadas pueden repetir IP sin conflicto.  
+- La MAC la fabrica el proveedor de la NIC.  
+- La IP puede cambiar en función de la red.
+###
+
+::4. Unir columnas::
+Relaciona cada concepto con su definición:
+{
+=NIC -> Dispositivo o tarjeta que permite la conexión de un ordenador a la red.#Correcto: la NIC es la tarjeta de red.
+=Buffer de envío -> Espacio de memoria donde se encolan mensajes para enviarlos juntos.#Correcto, se usa para optimizar envíos.
+=IP Privada -> Dirección IP destinada al uso en redes locales, no accesible desde Internet.#Correcto.
+=IP Pública -> Dirección IP única en Internet asignada para comunicación externa.#Correcto.
+}
+
+#### 
+General feedback:
+La NIC (Network Interface Card) es la tarjeta de red.  
+El buffer de envío optimiza los envíos.  
+Las IP privadas se usan en LAN y no son directamente roteables en Internet.  
+Las IP públicas están asignadas para comunicación externa.
+###
+
+::5. Opción múltiple - una sola respuesta::
+¿Qué ventaja ofrece el uso de un buffer en un servidor web para encolar paquetes antes de enviarlos?
+{
+~a) Reduce la cantidad de datos que llegan al usuario.#Incorrecto: no reduce la cantidad de datos, solo los agrupa.
+= b) Permite enviar varios datos juntos y optimiza los envíos.#Correcto: agrupar datos mejora la eficiencia.
+~c) Almacena los datos indefinidamente para ahorrar ancho de banda.#Incorrecto: no se almacenan indefinidamente.
+~d) Comprueba si la dirección MAC coincide con la IP.#Incorrecto: no es función del buffer hacer esa comprobación.
+}
+
+#### 
+Feedback para cada opción:
+a) Falso, no reduce datos, solo agrupa.  
+b) Correcto, agrupar datos mejora la eficiencia de los envíos.  
+c) Falso, no se guardan indefinidamente.  
+d) Falso, la verificación MAC-IP ocurre en otras capas (ARP).
+###
+
+::6. Rellenar huecos::
+"La capa de {1:SHORTANSWER:=Presentación#Correcto: se encarga de traducir formatos, cifrado, compresión.} en el modelo OSI se encarga de traducir los datos a un formato común, mientras que la capa de {1:SHORTANSWER:=Sesión#Correcto: establece y mantiene la comunicación entre dispositivos.} establece y mantiene el diálogo entre dos dispositivos."
+
+#### 
+General feedback:
+La capa de Presentación (Capa 6 OSI) gestiona traducción de formatos y cifrado.  
+La capa de Sesión (Capa 5) gestiona el establecimiento y control de diálogos.
+###
+
+::7. Opción múltiple - una sola respuesta::
+¿En qué capa del modelo OSI se gestionan temas como puertos y la segmentación de datos (por ejemplo, puerto 80 para HTTP)?
+{
+~a) Aplicación#Incorrecto: la capa de Aplicación (Capa 7) se encarga de protocolos como HTTP/FTP, no de segmentación.
+= b) Transporte#Correcto: la capa de Transporte gestiona puertos (TCP/UDP) y segmentación.
+~c) Red#Incorrecto: la capa de Red (Capa 3) maneja direcciones IP y enrutamiento.
+~d) Enlace de datos#Incorrecto: la capa de Enlace (Capa 2) trabaja con tramas y direcciones MAC.
+}
+
+#### 
+Feedback para cada opción:
+a) Falso, Aplicación es capa 7 y no gestiona puertos a bajo nivel.  
+b) Correcto, Transporte (Capa 4) maneja puertos, segmentación, control de flujo.  
+c) Falso, la capa de Red maneja IP.  
+d) Falso, la capa de Enlace es para MAC y tramas.
+###
+
+::8. Unir columnas::
+Relaciona cada capa del modelo OSI (por número) con su nombre:
+{
+= Capa 1 -> Física#Correcto: señales eléctricas y medios físicos.
+= Capa 2 -> Enlace de datos#Correcto: tramas, MAC.
+= Capa 3 -> Red#Correcto: IP, enrutamiento.
+= Capa 4 -> Transporte#Correcto: TCP/UDP, puertos.
+= Capa 5 -> Sesión#Correcto: mantiene diálogos.
+= Capa 6 -> Presentación#Correcto: traduce formatos, cifrado.
+= Capa 7 -> Aplicación#Correcto: protocolos de usuario final.
+}
+
+#### 
+General feedback:
+Las capas OSI van de la 1 (Física) a la 7 (Aplicación).  
+Los dispositivos y protocolos se clasifican según la capa en que operan.
+###
+
+::10. Verdadero/Falso (3 afirmaciones)::
+Marca las afirmaciones que consideres verdaderas:
+{
+= a) La capa Física se encarga de la codificación y decodificación de las señales.#Correcto: eso corresponde a la Capa 1.
+~%0% b) La capa Presentación define la ruta y reenvía los paquetes.#Falso: esto lo hace la capa de Red (Capa 3).
+= c) La capa de Sesión administra la comunicación entre aplicaciones.#Correcto: la Capa 5 maneja el diálogo (sesión).
+}
+
+#### 
+General feedback:
+- Capa Física (1): señalización  
+- Capa Presentación (6): traducción de formatos, no enrutamiento  
+- Capa Sesión (5): administra el enlace lógico entre aplicaciones
+###
+
+::11. Opción múltiple - una sola respuesta::
+Hay un error en la red y no se reciben datos porque la dirección IP del dispositivo está mal configurada. ¿En qué capa del modelo TCP/IP ubicarías principalmente este problema?
+{
+~a) Capa de Enlace (Link)#Incorrecto: allí se manejan MAC y tramas.
+= b) Capa de Internet (IP)#Correcto: la capa IP es la responsable de la dirección lógica.
+~c) Capa de Transporte (TCP/UDP)#Incorrecto: esta capa asume que la IP está bien configurada.
+~d) Capa de Aplicación#Incorrecto: la aplicación depende de una IP válida para funcionar.
+}
+
+#### 
+Feedback para cada opción:
+a) Falso, la capa de Enlace no gestiona IP.  
+b) Correcto, los errores de IP son de la capa Internet.  
+c) Falso, la capa de Transporte se basa en IP configurada.  
+d) Falso, la capa de Aplicación viene después de la IP.
+###
+
+::12. Opción múltiple - una sola respuesta::
+Un servidor web no responde, pero los paquetes llegan correctamente al puerto 80. ¿Dónde podría estar el problema dentro del modelo TCP/IP?
+{
+~a) Capa de Enlace (Link)#Incorrecto: si llegan paquetes, la capa de enlace funciona.
+~b) Capa de Internet (IP)#Incorrecto: los paquetes IP llegan bien.
+~c) Capa de Transporte (TCP/UDP)#Incorrecto: el puerto 80 (TCP) está recibiendo tráfico.
+= d) Capa de Aplicación (HTTP, etc.)#Correcto: la aplicación web no responde.
+}
+
+#### 
+Feedback para cada opción:
+a) Falso, la capa de enlace no falla si se reciben tramas.  
+b) Falso, la IP funciona si llegan paquetes.  
+c) Falso, el puerto 80 recibe, así que TCP funciona.  
+d) Correcto, el problema está en el servidor web (capa de aplicación).
+###
+
+::13. Opción múltiple - una sola respuesta::
+Cuando un switch de red presenta fallos y los dispositivos dejan de intercambiar datos, ¿en qué capa del modelo TCP/IP está el problema?
+{
+= a) Capa de Enlace (Link)#Correcto: el switch opera con direcciones MAC y tramas.
+~b) Capa de Internet (IP)#Incorrecto: esto corresponde a routers, no switches.
+~c) Capa de Transporte (TCP/UDP)#Incorrecto: el switch no maneja puertos de capa 4.
+~d) Capa de Aplicación#Incorrecto: no es un fallo de software de aplicación.
+}
+
+#### 
+Feedback para cada opción:
+a) Correcto, los switches funcionan a nivel de enlace (MAC).  
+b) Falso, la capa de Internet es para IP y routers.  
+c) Falso, capa de Transporte es TCP/UDP.  
+d) Falso, la aplicación está por encima.
+###
+
+::14. Opción múltiple - una sola respuesta::
+Si un router está congestionado y provoca lentitud en la transmisión de datos, ¿en qué capa del modelo TCP/IP situarías el problema?
+{
+~a) Capa de Aplicación#Incorrecto: la aplicación no gestiona el enrutamiento.
+~b) Capa de Transporte#Incorrecto: el router no opera en capa de transporte.
+= c) Capa de Internet (IP)#Correcto: el router funciona en la capa IP.
+~d) Capa de Enlace (Link)#Incorrecto: esto corresponde a switches y MAC.
+}
+
+#### 
+Feedback para cada opción:
+a) Falso, la aplicación no maneja el tráfico enrutado.  
+b) Falso, la capa de Transporte es para puertos y segmentación.  
+c) Correcto, el router está en la capa IP.  
+d) Falso, la capa de Enlace se encarga de MAC y tramas.
+###
+
+::15. Opción múltiple - una sola respuesta::
+¿A qué red pertenece la IP 192.168.1.10 con la máscara 255.255.255.0?
+{
+= a) 192.168.1.0#Correcto: /24 => la red es 192.168.1.0.
+~b) 192.168.0.0#Incorrecto: esa es otra red diferente.
+~c) 192.168.1.1#Incorrecto: es una IP concreta, no la red.
+~d) 192.168.2.0#Incorrecto: distinta subred.
+}
+
+#### 
+Feedback para cada opción:
+a) Correcto, 255.255.255.0 implica 192.168.1.0/24.  
+b) Falso, eso sería 192.168.0.x/24.  
+c) Falso, 192.168.1.1 es un host, no la red.  
+d) Falso, 192.168.2.x es otra red.
+###
+
+::16. Respuesta corta::
+Si la máscara de red es 255.255.255.128, ¿cuántas direcciones IP utilizables hay en esa subred?
+{
+=126
+}
+
+#### 
+General feedback:
+Con 255.255.255.128 (o /25) se tienen 128 direcciones totales, de las cuales se descartan 2 (red y broadcast).  
+Por tanto, 126 son utilizables.
+###
+
+::17. Opción múltiple - una sola respuesta::
+La IP 10.0.0.5 con máscara 255.0.0.0 pertenece a:
+{
+= a) 10.0.0.0#Correcto: la red /8 abarca 10.0.0.0 a 10.255.255.255.
+~b) 10.0.0.1#Incorrecto: es un host válido, no la red.
+~c) 10.255.255.255#Incorrecto: sería la dirección de broadcast final.
+~d) No puede determinarse#Incorrecto: sí se puede, /8 => 10.0.0.0.
+}
+
+#### 
+Feedback para cada opción:
+a) Correcto, con 255.0.0.0 la red es 10.0.0.0.  
+b) Falso, 10.0.0.1 es una IP dentro de la red.  
+c) Falso, 10.255.255.255 es broadcast.  
+d) Falso, se puede determinar con /8.
+###
+
+::18. Completar frase::
+"Cuando tenemos dos redes con máscaras 255.255.255.0 y 255.255.0.0, la IP 192.168.100.1 pertenece a la red con la máscara {1:SHORTANSWER:=255.255.0.0#Correcto: /16 abarca 192.168.x.x}."
+
+#### 
+General feedback:
+Con 255.255.255.0 (o /24), la red sería 192.168.100.0/24.  
+Con 255.255.0.0 (o /16), la red es 192.168.0.0/16, que también incluye 192.168.100.1.  
+Por tanto, la IP está en la red /16.
+###
+
+::19. Opción múltiple - una sola respuesta::
+Dada la topología con dos subredes: 
+ - Subred 1: 192.168.1.0/24
+ - Subred 2: 192.168.2.0/24
+¿En cuál subred estaría la IP 192.168.2.15?
+{
+~a) Subred 1#Incorrecto: Subred 1 es 192.168.1.0/24.
+= b) Subred 2#Correcto: 192.168.2.15 pertenece a 192.168.2.0/24.
+~c) En ambas#Incorrecto: no se puede estar en dos subredes a la vez.
+~d) No está en ninguna#Incorrecto: sí coincide con la 192.168.2.0/24.
+}
+
+#### 
+Feedback para cada opción:
+a) Falso, 192.168.2.15 no está en 192.168.1.x.  
+b) Correcto, 192.168.2.15 está en la subred 192.168.2.0/24.  
+c) Falso, la IP no puede pertenecer a dos subredes a la vez.  
+d) Falso, claramente está en la subred 192.168.2.0/24.
+###
+
+::21. ¿Qué nivel del modelo OSI utiliza un switch?::
+¿Qué nivel del modelo OSI utiliza un switch?
+{
+=Nivel 2 (Enlace de datos).#Correcto: los switches operan en la capa de enlace, gestionando direcciones MAC.
+~Nivel 3 (Red).#Incorrecto: ese nivel lo utilizan los routers, no los switches.
+~Nivel 1 (Físico).#Incorrecto: aunque tienen componentes físicos, la lógica de conmutación es capa 2.
+~Nivel 4 (Transporte).#Incorrecto: es la capa de comunicaciones extremo a extremo (TCP/UDP).
+}
+
+::22. ¿Cómo envía un switch los mensajes dentro de la misma red?::
+¿Cómo envía un switch los mensajes dentro de la misma red?
+{
+=Utilizando las direcciones MAC de los dispositivos.#Correcto: el switch consulta su tabla MAC para reenviar los frames.
+~Utilizando las direcciones IP de los dispositivos.#Incorrecto: eso corresponde a los routers a nivel de red (capa 3).
+~Reenviando todo el tráfico a todos los dispositivos.#Incorrecto: eso sería un hub, no un switch.
+~Solicitando ayuda al router.#Incorrecto: no necesita un router para enviar tramas en la misma LAN.
+}
+
+::23. ¿Qué dispositivo enruta paquetes entre diferentes redes?::
+¿Qué dispositivo enruta paquetes entre diferentes redes?
+{
+=El router, utilizando las direcciones IP de origen y destino.#Correcto: así opera el router a nivel de red, capa 3.
+~El switch, utilizando las direcciones IP de origen y destino.#Incorrecto: el switch no trabaja con IPs, sino con MAC.
+~El router, utilizando las direcciones MAC de los dispositivos.#Incorrecto: el router sí puede usarlas, pero lo fundamental es la IP para el enrutamiento.
+~El switch, utilizando las direcciones MAC y IP de los dispositivos.#Incorrecto: el switch no enruta entre redes, solo conmuta en la misma LAN.
+}
+
+::24. ¿Cuántas direcciones IP tiene un router conectado a varias redes?::
+¿Cuántas direcciones IP tiene un router conectado a varias redes?
+{
+=Una por cada red a la que está conectado.#Correcto: cada interfaz del router está configurada con una IP diferente.
+~Una única dirección IP para todas las redes.#Incorrecto: un router no puede usar la misma IP en varias redes distintas.
+~Ninguna, utiliza direcciones MAC exclusivamente.#Incorrecto: los routers trabajan con direcciones IP, no solo con MAC.
+~Dos, una para enviar y otra para recibir datos.#Incorrecto: cada interfaz se configura con su propia IP, no es una para enviar y otra para recibir.
+}
