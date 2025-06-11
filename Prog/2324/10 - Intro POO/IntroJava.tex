@@ -1,0 +1,914 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}  % Para asegurar que usa UTF-8
+\usepackage[T1]{fontenc}     % Para mejorar el soporte de caracteres acentuados
+
+\usepackage[spanish]{babel}
+\usepackage{listings}      % Para código fuente
+\usepackage{xcolor}        % Colores para resaltar código
+\usepackage{hyperref}      % Enlaces
+
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+%--- Tema y colores de beamer ---
+\usetheme{Madrid}
+
+% Definimos colores personalizados (opcional)
+\definecolor{myBlue}{RGB}{25,25,112}  % MidnightBlue
+\definecolor{myGray}{RGB}{240,240,240}
+
+% Configuramos un fondo para la diapositiva de cambio de sección (opcional)
+% Ejemplo: color de fondo gris claro
+\setbeamercolor{section page}{bg=myGray, fg=myBlue}
+
+% Podemos usar \AtBeginSection para mostrar una diapositiva indicadora
+\AtBeginSection[]{
+  \begin{frame}[plain]  % "plain" para que no aparezca encabezado/footers
+    \centering
+    % Podemos usar un beamercolorbox personalizado:
+    \begin{beamercolorbox}[sep=10pt, center, shadow=true, rounded=true]{section page}
+      \usebeamerfont{title}\Huge \textbf{\insertsectionhead}
+    \end{beamercolorbox}
+  \end{frame}
+}
+
+% Opcional: definimos un estilo para el código
+\lstset{
+    inputencoding=utf8,     % Asegurar codificación UTF-8
+  backgroundcolor=\color{white},
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  keywordstyle=\bfseries\color{blue},
+  commentstyle=\itshape\color{gray},
+  stringstyle=\color{red},
+  showstringspaces=false,
+    extendedchars=true,     % Permitir caracteres extendidos
+    frame=single,           % Marco alrededor del código
+    language=Java,           % Especificar el lenguaje si aplica
+        literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+
+\begin{document}
+
+%-------------------------------------
+\begin{frame}{Índice (1/3)}
+  \tableofcontents[sections={1-3}]
+\end{frame}
+
+\begin{frame}{Índice (2/3)}
+  \tableofcontents[sections={4-5}]
+\end{frame}
+
+
+\begin{frame}{Índice (3/3)}
+  \tableofcontents[sections={6-8}]
+\end{frame}
+
+
+%=====================================
+\section{Introducción a Java}
+
+%-------------------------------------
+\subsection{Historia y filosofía de Java}
+
+\begin{frame}{1.1.1. Orígenes de Java}
+\textbf{Creador principal}: James Gosling (Sun Microsystems) \\
+\textbf{Año de concepción}: Alrededor de 1991 \\
+\textbf{Nombre original}: “Oak” \\
+\textbf{¿Por qué “Java”?} \\
+\begin{itemize}
+  \item Se dice que el nombre proviene de una marca de café popular entre los desarrolladores.
+  \item El ícono de la taza de café humeante alude a esta anécdota.
+\end{itemize}
+
+\textbf{Anécdota}:  
+Java inicialmente se pensó para programar dispositivos electrónicos (TV, mandos). Con el auge de Internet a mediados de los 90, pasó a aplicaciones web/escritorio y se hizo muy popular.
+\end{frame}
+
+%-------------------------------------
+\begin{frame}{1.1.2. Filosofía de Java}
+\begin{itemize}
+  \item \textbf{Simplicidad}: Sintaxis familiar a C/C++.
+  \item \textbf{Portabilidad} (WORA): “Write Once, Run Anywhere”.
+  \item \textbf{Robustez}: Manejo automático de memoria (GC), detección temprana de errores.
+  \item \textbf{Seguridad}: “Sandbox” que limita acciones peligrosas.
+  \item \textbf{Orientación a objetos}: Clases y objetos como base del lenguaje.
+\end{itemize}
+
+\textbf{Reflexión}:  
+¿Por qué la portabilidad WORA fue tan revolucionaria a mediados de los 90?  
+\end{frame}
+
+%-------------------------------------
+\subsection{Características de Java}
+
+\begin{frame}{1.2. Características de Java}
+\begin{enumerate}
+  \item \textbf{Orientación a objetos}.
+  \item \textbf{Manejo automático de memoria} (Garbage Collector).
+  \item \textbf{Elevada portabilidad}: Bytecode interpretado por la JVM.
+  \item \textbf{Seguridad}: Modelo estricto para ejecución controlada.
+  \item \textbf{Extensa biblioteca estándar} (Java API).
+  \item \textbf{Multihilo}: Soporte integrado (el año que viene).
+  \item \textbf{Relativa simplicidad} frente a C/C++: sin punteros aritméticos, etc.
+\end{enumerate}
+
+\textbf{Ejemplo comparativo (C vs Java)}:  
+En C, `malloc` / `free` puede generar fugas de memoria. En Java, `new` + GC simplifica la gestión.
+\end{frame}
+
+%-------------------------------------
+\subsection{Diferencias clave entre C y Java}
+
+\begin{frame}{1.3. Diferencias clave con C}
+\begin{itemize}
+  \item \textbf{No hay punteros “explícitos”}: Sólo referencias.
+  \item \textbf{Estructuras vs Clases}: En C, `struct`; en Java, todo gira en torno a clases.
+  \item \textbf{Sintaxis similar, pero no igual}: Booleanos estrictos (`true`/`false`).
+  \item \textbf{No hay `main()` global}: Todo debe estar en una clase con `main(String[] args)`.
+  \item \textbf{Manejo de memoria}: `malloc`/`free` en C vs `new`/GC en Java.
+  \item \textbf{Biblioteca estándar} muy extensa en Java.
+  \item \textbf{Compilación a bytecode}: En C → binario, en Java → `.class` interpretado por la JVM.
+\end{itemize}
+
+\textbf{Anécdota}:  
+La falta de punteros explícitos frustra a programadores de C, pero mejora la seguridad.
+\end{frame}
+
+%-------------------------------------
+\subsection{La JVM y el bytecode}
+
+\begin{frame}{1.4. El concepto de la JVM}
+\textbf{¿Qué es la JVM?}
+\begin{itemize}
+  \item Interpreta/compila en caliente (JIT) el bytecode.
+  \item Cada SO o plataforma tiene su propia JVM.
+\end{itemize}
+
+\textbf{Bytecode como intermedio}
+\begin{itemize}
+  \item `javac` compila `.java` a `.class`.
+  \item Independiente de arquitectura. La JVM lo ejecuta.
+\end{itemize}
+
+\textbf{Ventajas}
+\begin{itemize}
+  \item Portabilidad total.
+  \item Seguridad (sandbox).
+  \item Optimización con JIT.
+  \item Facilidad para depuración.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------
+\subsection{JDK y JRE}
+
+\begin{frame}{1.5. JDK (Java Development Kit) y JRE (Java Runtime Environment)}
+\textbf{JRE}:
+\begin{itemize}
+  \item Contiene la JVM y bibliotecas para \textit{ejecutar} aplicaciones.
+  \item No incluye `javac` (sin herramientas de desarrollo).
+\end{itemize}
+
+\textbf{JDK}:
+\begin{itemize}
+  \item Incluye JRE + compilador `javac`, `jar`, `javadoc`, etc.
+  \item Necesario para \textit{programar} en Java.
+\end{itemize}
+
+\textbf{Sugerencia de instalación}:  
+Actualmente se suele usar directamente el JDK (e.g. OpenJDK, Oracle JDK, etc.).
+\end{frame}
+
+%=====================================
+\section{Entorno de desarrollo}
+
+%-------------------------------------
+\subsection{Instalación de Java (JDK)}
+
+\begin{frame}{2.1.1. ¿Qué necesitamos instalar?}
+\textbf{JDK}:  
+\begin{itemize}
+  \item Incluye compilador, JVM y herramientas.
+\end{itemize}
+
+\textbf{Versiones populares}:
+\begin{itemize}
+  \item OpenJDK (libre y abierto).
+  \item Oracle JDK (licencia propietaria).
+  \item Distribuciones de terceros (AdoptOpenJDK, Corretto, Zulu...).
+\end{itemize}
+
+\textbf{Ejercicio}:  
+Verifica la versión instalada con \texttt{java -version} y discute las diferencias.
+\end{frame}
+
+\begin{frame}{2.1.2. Dónde conseguirlo}
+\begin{itemize}
+  \item \href{https://adoptium.net/}{Adoptium} (OpenJDK).
+  \item \href{https://www.oracle.com/java/technologies/downloads/}{Oracle} (Oracle JDK).
+\end{itemize}
+
+\textbf{Versiones LTS}: Java 11, Java 17, etc.  
+Se recomiendan para proyectos a largo plazo.
+
+\textbf{Tip práctico}:  
+Muestra cómo instalar en Windows/Mac/Linux, y luego compilar un “Hola Mundo”.
+\end{frame}
+
+%-------------------------------------
+\subsection{Configuración de variables de entorno}
+
+\begin{frame}{2.2. PATH y JAVA\_HOME}
+\textbf{PATH}: Permite usar \texttt{javac} y \texttt{java} en la terminal.\\
+\textbf{JAVA\_HOME}: Almacena la ruta del JDK; algunas herramientas lo necesitan.
+
+\textbf{Windows}:
+\begin{enumerate}
+  \item Panel de Control → Variables de entorno.
+  \item Crea \texttt{JAVA\_HOME} apuntando al directorio del JDK.
+  \item Agrega \texttt{\%JAVA\_HOME\%\\bin} a \texttt{PATH}.
+\end{enumerate}
+
+\textbf{macOS / Linux}:
+\begin{enumerate}
+  \item Editar \texttt{\$HOME/.bashrc} o similar.
+  \item \texttt{export JAVA\_HOME=/ruta/al/jdk}
+  \item \texttt{export PATH=\$JAVA\_HOME/bin:\$PATH}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------
+\subsection{Herramientas de desarrollo}
+
+\begin{frame}{2.3. \texttt{javac}, \texttt{java}, \texttt{jar}}
+\begin{itemize}
+  \item \textbf{javac}: Compilador. Convierte \texttt{.java} en \texttt{.class}.
+  \item \textbf{java}: Intérprete. Ejecuta el \texttt{.class} en la JVM.
+  \item \textbf{jar}: Empaqueta en archivos \texttt{.jar}.
+\end{itemize}
+
+\textbf{Uso básico}:
+\begin{itemize}
+  \item \texttt{javac MiPrograma.java}
+  \item \texttt{java MiPrograma}
+  \item \texttt{jar cf MiPrograma.jar MiPrograma.class}
+\end{itemize}
+
+\textbf{Anécdota}:  
+El clásico “Hola Mundo” se compila y ejecuta en dos pasos.  
+\end{frame}
+
+%-------------------------------------
+\subsection{Uso de IDE vs editores de texto}
+
+\begin{frame}{2.4. IDEs: Eclipse, IntelliJ, NetBeans...}
+\textbf{Ventajas de un IDE}:
+\begin{itemize}
+  \item Autocompletado, resaltado de errores, depuración integrada.
+  \item Manejo de proyectos grandes (módulos, bibliotecas).
+\end{itemize}
+
+\textbf{Desventajas}:
+\begin{itemize}
+  \item Ocultan detalles de compilación.
+  \item Requiere más recursos del sistema.
+\end{itemize}
+
+\textbf{Edición manual + terminal}:
+\begin{itemize}
+  \item Bueno para aprender el flujo de compilación.
+  \item Alternativas ligeras: VSCode, Vim + plugins, etc.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------
+\subsection{Primer programa “Hola Mundo”}
+
+\begin{frame}[fragile]{2.5. Hola Mundo}
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+public class HolaMundo {
+    public static void main(String[] args) {
+        System.out.println("Hola, mundo!");
+    }
+}
+\end{lstlisting}
+
+\textbf{Claves}:
+\begin{itemize}
+  \item \texttt{public class} coincide con el nombre del archivo (\texttt{HolaMundo.java}).
+  \item \texttt{main(String[] args)} es el punto de entrada.
+  \item \texttt{System.out.println} imprime en consola.
+\end{itemize}
+
+\textbf{Pasos}:
+\begin{enumerate}
+  \item \texttt{javac HolaMundo.java}
+  \item \texttt{java HolaMundo}
+\end{enumerate}
+\end{frame}
+
+%=====================================
+\section{Fundamentos de la sintaxis de Java}
+
+%-------------------------------------
+\subsection{Estructura básica de un programa}
+
+\begin{frame}[fragile]{3.1. Estructura}
+\begin{lstlisting}[language=Java]
+public class MiClase {
+    // Atributos
+    // Métodos
+    public static void main(String[] args) {
+        System.out.println("Hola, Java");
+    }
+}
+\end{lstlisting}
+
+\textbf{En Java}:
+\begin{itemize}
+  \item Todo dentro de una clase.
+  \item El archivo \texttt{MiClase.java} contiene una \texttt{public class MiClase}.
+  \item No hay funciones “sueltas” como en C.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------
+\subsection{Nombrado de clases y métodos}
+
+\begin{frame}{3.2. Convenciones de nombres}
+\begin{itemize}
+  \item \textbf{Clases}: PascalCase (p.ej. \texttt{MiClaseBonita}).
+  \item \textbf{Métodos y variables}: camelCase (p.ej. \texttt{sumarNumeros}).
+  \item \textbf{Constantes}: MAYÚSCULAS con guiones bajos (p.ej. \texttt{MAX\_VALUE}).
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{itemize}
+  \item \texttt{public class Calculadora \{...\}}
+  \item \texttt{public void sumar(int a, int b)\{...\}}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------
+\subsection{Comentarios en Java}
+
+\begin{frame}[fragile]{3.3. Comentarios}
+\textbf{Una línea}:
+\begin{lstlisting}
+// Comentario simple
+\end{lstlisting}
+
+\textbf{Multilínea}:
+\begin{lstlisting}
+/* Varias
+   líneas
+ */
+\end{lstlisting}
+
+\textbf{Documentación (javadoc)}:
+\begin{lstlisting}
+/**
+ * Documento para describir la clase o método.
+ * @param nombre
+ * @return cadena de saludo
+ */
+\end{lstlisting}
+
+\textbf{Ejercicio}:
+Generar un pequeño programa con los tres tipos de comentarios y usar \texttt{javadoc}.
+\end{frame}
+
+%-------------------------------------
+\subsection{Diferencias de sintaxis con C}
+
+\begin{frame}{3.4. Diferencias principales}
+\begin{itemize}
+  \item \textbf{Sin funciones libres}: Todo método dentro de una clase.
+  \item \textbf{Booleanos estrictos}: \texttt{true}, \texttt{false}, no enteros.
+  \item \textbf{Sin aritmética de punteros}: Manejo de referencias.
+  \item \textbf{Sin macros o preprocesador} (\texttt{\#define}, \texttt{\#include}).
+  \item \textbf{Import} de paquetes (\texttt{java.util.*}, etc.) en vez de \texttt{\#include}.
+\end{itemize}
+
+\end{frame}
+
+%=====================================
+\section{Tipos de datos y Strings}
+
+%-------------------------------------
+\subsection{Tipos primitivos de datos}
+
+\begin{frame}{4.1. Tipos primitivos}
+\begin{itemize}
+  \item \texttt{byte} (8 bits), \texttt{short} (16 bits), \texttt{int} (32 bits), \texttt{long} (64 bits)
+  \item \texttt{float}, \texttt{double} (punto flotante de 32 y 64 bits)
+  \item \texttt{char} (Unicode de 16 bits)
+  \item \texttt{boolean} (\texttt{true}/\texttt{false})
+\end{itemize}
+
+\textbf{Ejemplo}:
+\texttt{int contador = 0;}  
+\texttt{double temperatura = 36.5;}
+
+Siempre se pasan por \textbf{valor}.
+\end{frame}
+
+%-------------------------------------
+\subsection{Variables y alcance}
+
+\begin{frame}[fragile]{4.2.1. Declaración e inicialización}
+\begin{lstlisting}[language=Java]
+int contador = 0;
+double altura = 1.75;
+\end{lstlisting}
+
+\textbf{4.2.2. Alcance (scope)}:
+\begin{itemize}
+  \item \textbf{Locales}: dentro de métodos.
+  \item \textbf{Instancia}: definidas a nivel de clase, para cada objeto.
+  \item \textbf{Clase (static)}: compartidas por todas las instancias.
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+public class Alcance {
+    int valor; // variable de instancia
+    public void incrementar() {
+        int incremento = 10; // variable local
+        valor += incremento;
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Operadores aritméticos, lógicos y relacionales}
+
+\begin{frame}[fragile]{4.3. Operadores}
+\begin{itemize}
+    \item \textbf{Aritméticos}: `+ - * / %`  
+    \item \textbf{Lógicos}: `&& || !`  
+    \item \textbf{Relacionales}: `== != > < >= <=`
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+int a = 7, b = 2;
+System.out.println(a / b); // 3 (entero)
+System.out.println(a % b); // 1
+\end{lstlisting}
+
+\textbf{Booleanos estrictos}:  
+No se puede usar `if (a) {...}` como en C; debe ser `if (a > 0) {...}`.
+\end{frame}
+
+%-------------------------------------
+\subsection{Clase String}
+
+\begin{frame}[fragile]{4.4. Manejo de String}
+\textbf{Creación y concatenación}:
+\begin{lstlisting}[language=Java]
+String saludo = "Hola";
+String nombre = "Mundo";
+String mensaje = saludo + ", " + nombre;
+\end{lstlisting}
+
+\textbf{Métodos comunes}:
+\begin{itemize}
+  \item \texttt{length()}, \texttt{charAt(i)}, \texttt{substring(i,j)}, \texttt{equals()}, ...
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+System.out.println(mensaje.length());
+System.out.println(mensaje.charAt(0));
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Inmutabilidad y comparación de String}
+
+\begin{frame}[fragile]{4.5. Inmutabilidad}
+\begin{itemize}
+  \item Los objetos `String` no cambian su contenido.
+  \item Al modificar, realmente se crea uno nuevo.
+\end{itemize}
+\begin{lstlisting}[language=Java]
+String original = "Hola";
+original = original + " Mundo"; 
+// "Hola" sigue existiendo, "Hola Mundo" es otro objeto
+\end{lstlisting}
+
+\textbf{Comparación}:
+\begin{lstlisting}[language=Java]
+String a = "Hola";
+String b = new String("Hola");
+System.out.println(a == b);       // false (referencias distintas)
+System.out.println(a.equals(b));  // true (contenido igual)
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{StringBuilder y StringBuffer}
+
+\begin{frame}[fragile]{4.6. Clases para manipular Strings (superavanzado)}
+\textbf{StringBuilder}:
+\begin{itemize}
+  \item Mutable, rápido, no sincronizado.
+\end{itemize}
+
+\textbf{StringBuffer}:
+\begin{itemize}
+  \item Mutable, sincronizado, algo más lento.
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+StringBuilder sb = new StringBuilder("Hola");
+sb.append(" Mundo");
+sb.insert(5, " querido");
+System.out.println(sb.toString());
+\end{lstlisting}
+\end{frame}
+
+%=====================================
+\section{Manejo de memoria en Java vs. punteros en C}
+
+%-------------------------------------
+\subsection{Stack y Heap en Java}
+
+\begin{frame}[fragile]{5.1. Modelo de memoria}
+\textbf{Stack}:
+\begin{itemize}
+  \item Variables locales, referencias a objetos, llamadas de método.
+\end{itemize}
+
+\textbf{Heap}:
+\begin{itemize}
+  \item Objetos, variables de instancia.
+  \item Liberados por el GC cuando no hay referencias.
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+class Persona { String nombre; }
+public class MemoriaDemo {
+    public static void main(String[] args) {
+        int edad = 25; // Stack
+        Persona p = new Persona(); // Objeto en heap
+        p.nombre = "Juan";
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Referencias en Java vs punteros en C}
+
+\begin{frame}{5.2. Referencias vs punteros}
+\textbf{En Java}:
+\begin{itemize}
+  \item Referencias abstractas.
+  \item Sin aritmética de punteros.
+  \item Si es \texttt{null} y la usas, lanza \texttt{NullPointerException}.
+\end{itemize}
+
+\textbf{En C}:
+\begin{itemize}
+  \item Punteros directos a memoria.
+  \item Pueden sumarse/restarse, apuntar a posiciones arbitrarias.
+\end{itemize}
+
+\textbf{Mayor seguridad en Java} a costa de menos control en bajo nivel.
+\end{frame}
+
+%-------------------------------------
+\subsection{Garbage Collector}
+
+\begin{frame}[fragile]{5.3. Recolección de basura}
+\textbf{Funciona en segundo plano}:
+\begin{itemize}
+  \item Libera objetos sin referencias.
+\end{itemize}
+
+\textbf{Ventajas}:
+\begin{itemize}
+  \item Simplifica el código, evita fugas de memoria comunes en C.
+\end{itemize}
+
+\textbf{Limitaciones}:
+\begin{itemize}
+  \item No controlas exactamente cuándo se ejecuta el GC.
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+String mensaje = new String("Hola");
+mensaje = null; 
+// "Hola" queda elegible para GC
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Paso de parámetros por valor}
+
+\begin{frame}[fragile]{5.4. Paso por valor y referencias}
+\textbf{Primitivos}: Copia del valor. 
+
+\textbf{Objetos}: Copia de la referencia (apuntan al mismo objeto).
+
+\begin{lstlisting}[language=Java]
+public void cambiarNombre(Persona p) {
+    p.nombre = "Ana";
+}
+Persona persona = new Persona();
+persona.nombre = "Juan";
+cambiarNombre(persona);
+// persona.nombre -> "Ana"
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Comparativa con C}
+
+\begin{frame}{5.5. Implicaciones de no tener punteros}
+\textbf{Ventajas}:
+\begin{itemize}
+  \item Menos fugas de memoria, menos corrupción de punteros.
+  \item Te centras en la lógica de negocio.
+\end{itemize}
+
+\textbf{Desventajas}:
+\begin{itemize}
+  \item Menos control sobre la gestión y optimización a bajo nivel.
+  \item GC puede impactar en rendimiento en ciertos entornos.
+\end{itemize}
+\end{frame}
+
+%=====================================
+\section{Estructuras de control de flujo}
+
+%-------------------------------------
+\subsection{if, else if, else}
+
+\begin{frame}[fragile]{6.1. Condicionales}
+\begin{lstlisting}[language=Java]
+if (condicion) {
+   // ...
+} else if (otraCond) {
+   // ...
+} else {
+   // ...
+}
+\end{lstlisting}
+
+\textbf{Igual a C}, pero en Java las condiciones deben ser booleanas (\texttt{true}/\texttt{false}).
+\end{frame}
+
+%-------------------------------------
+\subsection{switch}
+
+\begin{frame}[fragile]{6.2. switch vs C}
+\textbf{Tipos permitidos}: \texttt{int}, \texttt{char}, \texttt{byte}, \texttt{short}, \texttt{String} (Java 7+).
+
+\begin{lstlisting}[language=Java]
+switch (dia) {
+   case "Lunes":
+      ...
+      break;
+   default:
+      ...
+}
+\end{lstlisting}
+
+\textbf{Nuevo switch en Java 12+} (expresión):
+\begin{lstlisting}[language=Java]
+String tipo = switch (dia) {
+   case "Lunes","Martes" -> "Laboral";
+   default -> "Fin de semana";
+};
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Bucles for, while, do-while}
+
+\begin{frame}[fragile]{6.3. Bucles}
+\textbf{for}:
+\begin{lstlisting}[language=Java]
+for (int i=0; i<10; i++) {
+   System.out.println(i);
+}
+\end{lstlisting}
+
+\textbf{while}:
+\begin{lstlisting}[language=Java]
+int x=0;
+while (x<10) {
+   System.out.println(x);
+   x++;
+}
+\end{lstlisting}
+
+\textbf{do-while}:
+\begin{lstlisting}[language=Java]
+int y=0;
+do {
+   y++;
+} while (y<10);
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{break, continue, etiquetas}
+
+\begin{frame}[fragile]{6.4. Instrucciones de interrupción}
+\textbf{break}:
+\begin{lstlisting}[language=Java]
+for (int i=0; i<10; i++) {
+  if (i==5) break; 
+  ...
+}
+\end{lstlisting}
+
+\textbf{continue}:
+\begin{lstlisting}[language=Java]
+for (int i=0; i<10; i++) {
+  if (i % 2 == 0) continue;
+  ...
+}
+\end{lstlisting}
+
+\end{frame}
+
+%=====================================
+\section{Arrays y manipulación de datos}
+
+%-------------------------------------
+\subsection{Arrays unidimensionales}
+
+\begin{frame}[fragile]{7.1. Declaración e inicialización}
+\begin{lstlisting}[language=Java]
+int[] numeros = new int[5];
+int[] otros = {1,2,3,4,5};
+System.out.println(numeros.length);
+\end{lstlisting}
+
+\textbf{En Java}:
+\begin{itemize}
+  \item Los arrays son objetos, con \texttt{length}.
+  \item Tamaño fijo una vez creados.
+  \item La memoria se reserva con \texttt{new}.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------
+\subsection{Arrays multidimensionales}
+
+\begin{frame}[fragile]{7.2. Bidimensionales y "jagged"}
+\begin{lstlisting}[language=Java]
+int[][] matriz = new int[3][4];
+int[][] jagged = new int[3][];
+jagged[0] = new int[4];
+jagged[1] = new int[2];
+jagged[2] = new int[5];
+\end{lstlisting}
+
+\textbf{En Java}: Realmente arrays de arrays.  
+
+\textbf{En C}: \texttt{int mat[3][4];} (tamaño fijo).
+\end{frame}
+
+%-------------------------------------
+\subsection{Recorrido de arrays}
+
+\begin{frame}[fragile]{7.3. for y for-each}
+\textbf{for normal}:
+\begin{lstlisting}[language=Java]
+for (int i=0; i<numeros.length; i++) {
+    System.out.println(numeros[i]);
+}
+\end{lstlisting}
+
+\textbf{for-each} (Java 5+):
+\begin{lstlisting}[language=Java]
+for (int num : numeros) {
+    System.out.println(num);
+}
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Arrays de objetos}
+
+\begin{frame}[fragile]{7.4. Arrays de Strings u objetos}
+\begin{lstlisting}[language=Java]
+String[] nombres = {"Ana", "Luis", "Pedro"};
+for (String n : nombres) {
+    System.out.println(n);
+}
+\end{lstlisting}
+
+En Java, \texttt{String} es un objeto.  
+En C, serían punteros a \texttt{char}.
+\end{frame}
+
+%-------------------------------------
+\subsection{Clase \texttt{java.util.Arrays}}
+
+\begin{frame}[fragile]{7.5. Métodos útiles}
+\begin{itemize}
+  \item \texttt{Arrays.toString(numeros)}
+  \item \texttt{Arrays.sort(numeros)}
+  \item \texttt{Arrays.binarySearch(numeros, x)}
+  \item \texttt{Arrays.fill(numeros, valor)}
+\end{itemize}
+
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+int[] nums = {5,3,8,1};
+Arrays.sort(nums);
+System.out.println(Arrays.toString(nums)); // [1,3,5,8]
+\end{lstlisting}
+\end{frame}
+
+%=====================================
+\section{Entrada/Salida (básica)}
+
+%-------------------------------------
+\subsection{Flujos de datos en consola}
+
+\begin{frame}{8.1. Concepto de stream}
+\textbf{System.out}: Salida estándar.  
+\textbf{System.in}: Entrada estándar.  
+\textbf{System.err}: Salida de errores.
+
+Los flujos (streams) son secuencias de bytes. Para leerlos de forma sencilla en Java, usaremos \texttt{Scanner}.
+\end{frame}
+
+%-------------------------------------
+\subsection{Uso de \texttt{System.out} y \texttt{System.err}}
+
+\begin{frame}[fragile]{8.2. Salida en consola}
+\begin{lstlisting}[language=Java]
+System.out.println("Hola mundo!");
+System.out.print("Sin salto de linea");
+System.err.println("Mensaje de error");
+\end{lstlisting}
+
+\textbf{printf} para formatear (similar a C):
+\begin{lstlisting}[language=Java]
+int edad = 25;
+System.out.printf("Tienes %d años\n", edad);
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Lectura desde consola}
+
+\begin{frame}{8.3. \texttt{System.in}}
+\texttt{System.in} es un InputStream “crudo”. Para leerlo cómodamente, usamos \textbf{Scanner}.
+\end{frame}
+
+%-------------------------------------
+\subsection{Clase Scanner}
+
+\begin{frame}[fragile]{8.4. Ejemplo con Scanner}
+\begin{lstlisting}[language=Java]
+import java.util.Scanner;
+
+Scanner entrada = new Scanner(System.in);
+System.out.println("Introduce tu nombre: ");
+String nombre = entrada.nextLine();
+
+System.out.println("Introduce tu edad: ");
+int edad = entrada.nextInt();
+
+System.out.println("Hola " + nombre + 
+                   ", tienes " + edad + " años.");
+entrada.close();
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------
+\subsection{Formateo de salida}
+
+\begin{frame}[fragile]{8.5. \texttt{printf} y \texttt{format}}
+\textbf{Ejemplo}:
+\begin{lstlisting}[language=Java]
+double precio = 12.5;
+System.out.printf("El precio es %.2f euros\n", precio);
+System.out.format("El precio es %.2f euros\n", precio);
+\end{lstlisting}
+
+\textbf{Ejercicio}:  
+Leer nombre y edad, y mostrar:  
+\texttt{[Usuario: Juan, Edad: 30 años]}
+\end{frame}
+
+\end{document}
